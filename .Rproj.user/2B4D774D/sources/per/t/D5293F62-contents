@@ -1,0 +1,211 @@
+---
+title: Attitudes about government in ESS - Network and Unique Variable analysis
+authors:
+  - name: Aleksandar Tomašević
+    affiliation: University of Novi Sad
+    location: Novi Sad, Republic of Serbia
+    email: atomashevic@ff.uns.ac.rs
+abstract: |
+  Using state-of-the art methodology, this paper aims to explore the dimensionality, structural organization, redundancy and influentiality of opinions about government performance and functionality in European Social Survey.
+keywords:
+  - ESS
+  - Public Opionion
+  - Exploratory Graph Analysis
+  - Unique Varible Analysis
+bibliography: references.bib
+biblio-style: unsrt
+output: 
+  rticles::arxiv_article:
+    keep_tex: true
+---
+
+```{r}
+knitr::opts_chunk$set(
+  comment = '', fig.width = 4, fig.height = 4,
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  error = FALSE,
+  tidy = TRUE,
+  cache = TRUE,
+  cache.lazy = FALSE,
+  cache.comments = TRUE,
+  dev = 'png',
+  fig.path = '../figures/',
+  fig.keep = 'all',
+  dpi = 350
+)
+```
+
+# Introduction
+
+# Data analysis
+
+## Data loading
+
+```{r packages}
+library(essurvey)
+library(dplyr)
+library(EGAnet)
+library(igraph)
+library(qgraph)
+library(influential)
+library(bootnet)
+```
+
+```{r convert-factor, echo=TRUE}
+factorsNumeric <-
+  function(d)
+    modifyList(d, lapply(d[, sapply(d, is.factor)],
+                         as.numeric))
+```
+
+```{r import-data}
+set_email('atomashevic@ff.uns.ac.rs')
+R9 <- import_rounds(9)
+```
+
+```{r}
+voi <- c('psppsgva','psppipla','trstprl','trstlgl','trstplc','stfeco','stfgov','stfdem','stfedu','stfhlth','frprtpl','gvintcz','poltran')
+R9df <- R9 %>% select(voi)
+R9df <-factorsNumeric(R9df)
+colnames(R9df) <- c('PeopleAllow','PeopleInfluence','Parliament','Legal','Police','Economy','Government','Democracy','Education','Health','FairChance','CitInterest','Transparent')
+```
+
+```{r}
+n9 = nrow(R9df)
+ega9 <- EGA(R9df,model='glasso',algorithm='louvain',plot.EGA = TRUE)
+```
+
+```{r}
+reds_9 <- node.redundant(R9df, n=n9, method = 'wTO')
+reds_vars_9 <- names(reds_9$redundant)
+```
+
+Redundant variables are `r reds_vars_9`.
+
+```{r}
+R9df_R <- R9df %>% select(-reds_vars_9)
+ega9_R <- EGA(R9df_R,model='glasso',algorithm='louvain',plot.EGA = TRUE)
+plot(ega9_R,labels=colnames(R9df_R))
+
+```
+
+```{r}
+#bega9_R <- bootEGA(R9df_R,n=300,model='glasso',type='resampling',algorithm='louvain')
+#save(bega9_R, file='bega9_R.Rds')
+load('bega9_R.Rds')
+```
+
+
+```{r}
+reds_9 <- node.redundant(R9df, n=n9, method = 'wTO')
+reds_vars_9 <- names(reds_9$redundant)
+```
+
+```{r}
+i9 <- graph_from_adjacency_matrix(ega9_R$network,weighted = TRUE,mode = "undirected")
+```
+
+```{r}
+i9_v <- V(i9)
+
+ivi9 <- ivi(graph=i9,vertices=i9_v,directed=FALSE,scaled = TRUE,,d=4)
+```
+
+\newpage
+
+
+```{r, fig.width=8,fig.height=8,fig.cap=' '}
+#pdf(file = '../demo.pdf',width = 8,height = 8)
+cent_network.vis(graph = i9,
+                                     cent.metric = ivi9,
+                                     directed = FALSE,
+                                     plot.title = "Belief Network - Entire ESS R9 dataset",weighted = TRUE,
+                                     legend.title = "IVI value",layout = 'fr',dist.power = 0.5,node.size.min = 22,node.size.max=40,node.color = 'D',label.color = 'white',label.cex = 0.13,show.labels = TRUE)
+#dev.off()
+```
+
+
+\newpage
+```{r}
+
+###################################
+# BEGA CONSENSUS GRAPH FUNCTION   #
+###################################
+
+consensus_graph <-function(bega){
+  s = bega$n
+  k = length(bega$boot.wc[1][[1]]$membership)
+  m = matrix(0,k,k)
+  for (i in 1:s)
+  {
+    x = bega$boot.wc[i][[1]]
+    for (u in 1:(k-1))
+    {
+      for (v in (u+1):k)
+      {
+        if (x$memberships[1,u]==x$memberships[1,v])
+        {
+          m[u,v] = m[u,v]+1
+        }
+      }
+    }
+  }
+  m = m/max(m)
+  g = graph_from_adjacency_matrix(m,mode='undirected',weighted = TRUE)
+  return(g)
+}
+
+####################################
+# CONSENSUS GRAPH BRIDGE CENTRALITY#
+####################################
+
+con_bridge <- function(congraph)
+{
+  cc <- cluster_louvain(congraph)
+  am <- get.adjacency(congraph,type = 'both',attr = 'weight',sparse = FALSE)
+  return(bridge(am,cc$membership,normalize = TRUE))
+}
+
+```
+
+```{r}
+library(networktools)
+cg <- consensus_graph(bega9_R)
+bc <- con_bridge(cg)
+plot(bc)
+```
+
+
+```{r}
+R9df_R_b <- bootnet::binarize(R9df_R)
+```
+
+```{r}
+ising_net <- estimateNetwork(R9df_R,default='IsingFit',weighted = TRUE,labels = colnames(R9df_R_b),tuning=0.5)
+```
+
+
+```{r}
+i9_ising <- graph_from_adjacency_matrix(ising_net$graph,weighted = TRUE,mode = "undirected")
+```
+
+```{r}
+i9_ising_v <- V(i9_ising)
+
+ivi9_ising <- ivi(graph=i9_ising,vertices=i9_ising_v,directed=FALSE,scaled = TRUE,,d=4)
+```
+
+\newpage
+
+
+```{r, fig.width=8,fig.height=8,fig.cap=' '}
+#pdf(file = '../demo.pdf',width = 8,height = 8)
+cent_network.vis(graph = i9_ising,
+                                     cent.metric = ivi9_ising,
+                                     directed = FALSE,
+                                     plot.title = "Belief Network - Entire ESS R9 dataset",weighted = TRUE,
+                                     legend.title = "IVI value",layout = 'fr',dist.power = 0.5,node.size.min = 22,node.size.max=40,node.color = 'D',label.color = 'white',label.cex = 0.13,show.labels = TRUE)
+#dev.off()
+```

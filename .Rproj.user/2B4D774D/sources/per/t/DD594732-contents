@@ -1,0 +1,42 @@
+UVA 1
+
+  Reundant pairs
+  
+    CitInterest, Transparent, FairChance
+    Keep only FairChance, higher SD
+    
+    PeopleAllow, PeopleInfluence
+    Keep PeopleAllow, higher SD, clear att
+    
+    Legal, Police
+    Keep Legal, higher SD
+    
+    Politicians, Parties
+    Keep Politicians, higher SD
+    
+    Education, Health
+    Dont remove
+    
+After UVA1: Parliarment--Legal as the largest
+
+UVA 2
+
+  Redundant pairs:
+  
+    Legal, Parliament, Politicians
+    Keep Politicians, higher SD
+    
+    PeopleAllow, FairChance
+    Keep FairChance, higher SD
+    
+After UVA2: Highest redundancy is between Government and Democracy
+
+
+
+I need to rethink the deletion of so many variables, no notable differences between groups so far.
+
+I like the UVA2 network, but I feel that too much reduced.
+
+However, the network gets too much complex and redundancy is obvious when we don't do that.
+
+So, we got with UVA2 full solution.
