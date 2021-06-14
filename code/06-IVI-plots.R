@@ -6,7 +6,7 @@ library(EGAnet)
 load('data-clean/data-reduced.Rds')
 load('data-clean/data-clean.Rds')
 
-netvars <- c(colnames(netdata), 'Legal','Parliament', 'PeopleAllow')
+netvars <- c(colnames(netdata))
 
 countries <- as.data.frame(read_csv('data-clean/external-data.csv'))['Country']
 
@@ -81,8 +81,8 @@ cent_network.vis(
   legend.title = "IVI value",
   layout = 'fr',
   dist.power = 0.4,
-  node.size.min = 22,
-  node.size.max = 40,
+  node.size.min = 15,
+  node.size.max = 22,
   node.color = 'C',
   label.color = 'black',
   label.cex = 0.13,
@@ -158,3 +158,6 @@ write_csv(ivi_row,file='output/ivi-row.csv')
 
 classes = as.data.frame(levels(data$Class5))
 ivi_class <- ivi_group_discrete(data,netvars,'Class5',classes)
+
+
+### IVI BY STFO GOV

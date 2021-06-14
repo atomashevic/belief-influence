@@ -4,7 +4,7 @@ library(EGAnet)
 load('data-clean/data-reduced.Rds')
 load('data-clean/data-clean.Rds')
 
-netvars <- c(colnames(netdata),'Legal', 'Parliament', 'PeopleAllow')
+netvars <- c(colnames(netdata))
 
 
 
@@ -22,7 +22,7 @@ plot(ega,plot.args=plotargs)
 dev.off()
 
 data$ROW <- as.factor(data$ROW)
-levels(data$ROW) <- c('LD','ED','EA')
+levels(data$ROW) <- c('EA','ED','LD')
 
 nt1 <- networktree(nodevars=data[,netvars],
                    splitvars=data[,c("ROW")],
@@ -63,5 +63,13 @@ nt4 <- networktree(nodevars=data[,netvars],
                    transform='glasso',
                    method = 'mob')
 
-comparetree(nt3, id1 = 2, id2 = 41, highlights = 3, plot = TRUE,labels=netvars)
+comparetree(nt4, id1 = 2, id2 = 41, highlights = 3, plot = TRUE,labels=netvars)
+comparetree(nt4, id1 = 3, id2 = 41, highlights = 3, plot = TRUE,labels=netvars)
+
+nt5 <- networktree(nodevars=data[,netvars],
+                   splitvars=data[,c("Government")],
+                   transform='glasso',
+                   method = 'ctree')
+
+comparetree(nt5, id1 = 3, id2 = 17, highlights = 3, plot = TRUE,labels=netvars)
 comparetree(nt3, id1 = 3, id2 = 41, highlights = 3, plot = TRUE,labels=netvars)

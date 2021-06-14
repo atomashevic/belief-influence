@@ -1,3 +1,5 @@
+
+
 factorsNumeric <-  function(d)
   modifyList(d, lapply(d[, sapply(d, is.factor)], as.numeric))
 
@@ -7,7 +9,8 @@ load('data-clean/data-oesch.Rds')
 voi <- c('psppsgva','psppipla','trstprl', 'trstplt',
          'trstprt',
          'trstlgl','trstplc','stfeco',
-         'stfgov','stfdem','stfedu',
+         'stfgov',
+         'stfdem','stfedu',
          'stfhlth','frprtpl','gvintcz',
          'poltran','gndr','agea',
          'cntry','rlgblg','eduyrs','class8','class5')
@@ -49,7 +52,8 @@ data[c(
 
 colnames(data) <-c('PeopleAllow','PeopleInfluence','Parliament',
                    'Legal','Police','Politicians','Parties','Economy',
-                   'Government','Democracy','Education',
+                   'Government',
+                   'Democracy','Education',
                    'Health','FairChance','CitInterest',
                    'Transparent','Gender','Age','Country','ReligionBelong','Education','Class8','Class5')
 

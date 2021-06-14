@@ -14,7 +14,7 @@ netvars <-
     'Politicians',
     'Parties',
     'Economy',
-    'Government',
+    #'Government',
     'Democracy',
     'Education',
     'Health',
@@ -38,7 +38,7 @@ uva1 <-
     adhoc = TRUE,
   )
 
-# Removed: CitInterest, Transparent, People Allow, Police, Parties
+# Removed: 'Transparent' 'FairChance' 'PeopleInfluence' 'Legal', 'Parties'
 
 netdata <- uva1$reduced$data
 
@@ -54,8 +54,26 @@ uva2 <-
     adhoc = TRUE,
   )
 
-# Removed: Legal, Parliament, PeopleAllow
+# Removed: Police, Politicians
+# Highest WTO less than 0.3 and less than 2 SD from mean WTO
+# 7 variables remaining
 
 netdata <- as.data.frame(uva2$reduced$data)
 
 save(netdata,file='data-clean/data-reduced.Rds')
+
+
+
+# TEST
+
+netvars <- c(colnames(netdata))
+
+
+
+ega <-
+  EGA(
+    data[, netvars],
+    model = 'glasso',
+    algorithm = 'louvain',
+    plot.EGA = FALSE,
+  )
