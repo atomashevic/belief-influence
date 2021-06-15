@@ -12,3 +12,21 @@ TODO:
    3. Healthcare index x Economy
    4. Democracy vs VDEM democracy indices
 
+
+
+!!! ROW EA VS LD compare plot EGA
+
+Correlations/scatter to consider:
+
+cor(country_data$Health,country_data$HCI)
+
+cor(country_data$Economy,country_data$GDP)
+
+cor(country_data$Parliament,country_data$RoL)#,method='spearman')
+
+Focus on the borderline cases
+
+
+Political system allows people to have a say in what government does
+
+!Government in country takes into account the interests of all citizens!
