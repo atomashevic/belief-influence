@@ -30,3 +30,6 @@ Focus on the borderline cases
 Political system allows people to have a say in what government does
 
 !Government in country takes into account the interests of all citizens!
+
+
+## Plot Notes

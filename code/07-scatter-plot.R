@@ -1,6 +1,8 @@
 library(ggplot2)
 library(hrbrthemes)
-country_data <- as.data.frame(read_csv('output/country-data.csv'))
+library(foreign)
+library(tidyverse)
+country_data <- as.data.frame(read_csv('output/country-data-v2.csv'))
 
 ## FIRST ONE
 
@@ -29,9 +31,15 @@ dev.off()
 #cor(data$Economy,data$GDP)
 #Correlation -0.4605517
 
+
+# SECOND ONE
+
 data <- country_data %>% select('Health', 'HCI')
 
-#data <- data %>%  filter((Health <= 90) & (Health > 40))
+data <- data %>%  filter((Health< 100) & (Health >= 10))
+
+
+
 
 png(
   filename = 'figures/05-scatter-health.png',
@@ -50,5 +58,81 @@ ggplot(data, aes(x = HCI, y = Health)) +
   ) + geom_smooth(method = "lm", se = FALSE, col = "purple") + xlab('HCI') +
   theme_minimal() + ylab('Health IVI')
 dev.off()
-cor(data$Economy,data$GDP)
-#Correlation -0.4605517
+
+
+# THIRD ONE
+
+data <- country_data %>% select('Democracy', 'ED')
+
+
+data <- data %>%  filter((Democracy< 100) & (Democracy >= 10))
+
+png(
+  filename = 'figures/05-scatter-ED.png',
+  width = 2000,
+  height = 1500,
+  res = 300
+)
+ggplot(data, aes(x = ED, y = Democracy)) +
+  geom_point(
+    color = "black",
+    fill = "#69b3a2",
+    shape = 1,
+    alpha = 0.5,
+    size = 2,
+    stroke = 1
+  ) + geom_smooth(method = "lm", se = FALSE, col = "purple") + xlab('Electoral Democracy Score') +
+  theme_minimal() + ylab('Democracy IVI')
+dev.off()
+
+
+# Correlation: -0.2935465
+
+data <- country_data %>% select('Democracy', 'DIRank')
+
+data <- data %>%  filter((Democracy< 100) & (Democracy >= 10))
+
+png(
+  filename = 'figures/05-scatter-DI.png',
+  width = 2000,
+  height = 1500,
+  res = 300
+)
+ggplot(data, aes(x = DIRank, y = Democracy)) +
+  geom_point(
+    color = "black",
+    fill = "#69b3a2",
+    shape = 1,
+    alpha = 0.5,
+    size = 2,
+    stroke = 1
+  ) + geom_smooth(method = "lm", se = FALSE, col = "purple") + xlab('Democracy Index Ranking') +
+  theme_minimal() + ylab('Democracy IVI')
+dev.off()
+
+# Correlation: 0.255278
+
+data <- country_data %>% select('Parliament', 'RoL')
+
+
+data <- data %>%  filter((Parliament< 100) & (Parliament >= 10))
+
+png(
+  filename = 'figures/05-scatter-RoL.png',
+  width = 2000,
+  height = 1500,
+  res = 300
+)
+ggplot(data, aes(x = RoL, y = Parliament)) +
+  geom_point(
+    color = "black",
+    fill = "#69b3a2",
+    shape = 1,
+    alpha = 0.5,
+    size = 2,
+    stroke = 1
+  ) + geom_smooth(method = "lm", se = FALSE, col = "purple") + xlab('Rule of Law') +
+  theme_minimal() + ylab('Pairlament IVI')
+dev.off()
+
+# Correlation: -0.221346
