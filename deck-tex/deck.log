@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2021.6.13)  23 JUN 2021 13:54
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2021.6.13)  25 JUN 2021 11:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1207,11 +1207,40 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 56.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [3
 
-] [4
+]
+File: ../figures/ess.png Graphic file (type bmp)
+<../figures/ess.png>
+File: ../figures/bsa.jpg Graphic file (type bmp)
+<../figures/bsa.jpg>
+File: ../figures/albus.jpeg Graphic file (type bmp)
+<../figures/albus.jpeg>
+File: ../figures/gss.jpg Graphic file (type bmp)
+<../figures/gss.jpg>
 
-] [5
+Overfull \vbox (41.9935pt too high) detected at line 85
+ []
 
-] [6
+[4
+
+]
+File: ../figures/ess.png Graphic file (type bmp)
+<../figures/ess.png>
+File: ../figures/bsa.jpg Graphic file (type bmp)
+<../figures/bsa.jpg>
+File: ../figures/albus.jpeg Graphic file (type bmp)
+<../figures/albus.jpeg>
+File: ../figures/gss.jpg Graphic file (type bmp)
+<../figures/gss.jpg>
+
+Overfull \vbox (41.9935pt too high) detected at line 85
+ []
+
+[5
+
+]
+File: ../figures/bs.png Graphic file (type bmp)
+<../figures/bs.png>
+ [6
 
 ] [7
 
@@ -1219,86 +1248,84 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 ] [9
 
-] [10
-
 ]
 File: ../figures/01-ega-full.png Graphic file (type bmp)
 <../figures/01-ega-full.png>
 
-Overfull \vbox (38.05632pt too high) detected at line 122
+Overfull \vbox (22.34393pt too high) detected at line 158
  []
 
-[11
+[10
 
 ]
 File: ../figures/99-tree-ea-vs-ld.png Graphic file (type bmp)
 <../figures/99-tree-ea-vs-ld.png>
 
-Overfull \vbox (1.71947pt too high) detected at line 130
+Overfull \vbox (1.71947pt too high) detected at line 166
  []
 
-[12
+[11
 
-] [13
+] [12
 
 ]
 File: ../figures/02-ivi-full.png Graphic file (type bmp)
 <../figures/02-ivi-full.png>
 
-Overfull \vbox (49.0203pt too high) detected at line 141
+Overfull \vbox (49.0203pt too high) detected at line 177
  []
 
-[14
+[13
 
 ]
 File: ../figures/03-radar-ger.png Graphic file (type bmp)
 <../figures/03-radar-ger.png>
 
-Overfull \vbox (71.77374pt too high) detected at line 150
+Overfull \vbox (71.77374pt too high) detected at line 186
  []
 
-[15
+[14
 
 ]
 File: ../figures/03-radar-ger-hu.png Graphic file (type bmp)
 <../figures/03-radar-ger-hu.png>
 
-Overfull \vbox (71.77374pt too high) detected at line 158
+Overfull \vbox (71.77374pt too high) detected at line 194
  []
 
-[16
+[15
 
 ]
 File: ../figures/03-radar-hu-rs.png Graphic file (type bmp)
 <../figures/03-radar-hu-rs.png>
 
-Overfull \vbox (71.77374pt too high) detected at line 168
+Overfull \vbox (71.77374pt too high) detected at line 204
  []
 
-[17
+[16
 
 ]
 File: ../figures/05-scatter-eco.png Graphic file (type bmp)
 <../figures/05-scatter-eco.png>
 LaTeX Font Info:    Font shape `TU/FiraMath(2)/m/n' will be
-(Font)              scaled to size 9.00096pt on input line 180.
+(Font)              scaled to size 9.00096pt on input line 216.
 LaTeX Font Info:    Font shape `TU/FiraMath(2)/m/n' will be
-(Font)              scaled to size 6.00064pt on input line 180.
+(Font)              scaled to size 6.00064pt on input line 216.
 LaTeX Font Info:    Font shape `TU/FiraMath(2)/m/n' will be
-(Font)              scaled to size 5.00053pt on input line 180.
+(Font)              scaled to size 5.00053pt on input line 216.
 LaTeX Font Info:    Font shape `TU/FiraMath(3)/m/n' will be
-(Font)              scaled to size 8.99904pt on input line 180.
+(Font)              scaled to size 8.99904pt on input line 216.
 LaTeX Font Info:    Font shape `TU/FiraMath(3)/m/n' will be
-(Font)              scaled to size 5.99936pt on input line 180.
+(Font)              scaled to size 5.99936pt on input line 216.
 LaTeX Font Info:    Font shape `TU/FiraMath(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 180.
+(Font)              scaled to size 4.99947pt on input line 216.
 
-Overfull \vbox (3.98018pt too high) detected at line 180
+Overfull \vbox (3.98018pt too high) detected at line 216
  []
 
-[18
+[17
 
-] [19
+] [18
 
 ]
 \tf@nav=\write6
@@ -1310,21 +1337,21 @@ Overfull \vbox (3.98018pt too high) detected at line 180
 \tf@snm=\write8
 \openout8 = `deck.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 187.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 187.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 223.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 223.
  (./deck.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 187.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 187.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 223.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 223.
 Package rerunfilecheck Info: File `deck.out' has not changed.
 (rerunfilecheck)             Checksum: AADBD5AE3DF962F54F460E25FEC3E732;225.
  ) 
 Here is how much of TeX's memory you used:
- 42447 strings out of 480515
- 986715 string characters out of 5915920
+ 42485 strings out of 480515
+ 987427 string characters out of 5915920
  1474906 words of memory out of 5000000
- 58647 multiletter control sequences out of 15000+600000
- 538388 words of font info for 106 fonts, out of 8000000 for 9000
+ 58676 multiletter control sequences out of 15000+600000
+ 538404 words of font info for 108 fonts, out of 8000000 for 9000
  1018 hyphenation exceptions out of 8191
  71i,13n,118p,1879b,871s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on deck.xdv (19 pages, 79084 bytes).
+Output written on deck.xdv (18 pages, 72368 bytes).

@@ -455,6 +455,15 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
+INPUT ../figures/ess.png
+INPUT ../figures/bsa.jpg
+INPUT ../figures/albus.jpeg
+INPUT ../figures/gss.jpg
+INPUT ../figures/ess.png
+INPUT ../figures/bsa.jpg
+INPUT ../figures/albus.jpeg
+INPUT ../figures/gss.jpg
+INPUT ../figures/bs.png
 INPUT ../figures/01-ega-full.png
 INPUT ../figures/99-tree-ea-vs-ld.png
 INPUT ../figures/02-ivi-full.png

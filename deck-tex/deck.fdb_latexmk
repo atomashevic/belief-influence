@@ -1,9 +1,9 @@
 # Fdb version 3
-["xdvipdfmx"] 1624449249 "deck.xdv" "deck.pdf" "deck" 1624449253
-  "deck.xdv" 1624449248 79084 a7fe9ccb0bd72fdb9f002519bbdf55c9 "xelatex"
+["xdvipdfmx"] 1624612049 "deck.xdv" "deck.pdf" "deck" 1624612053
+  "deck.xdv" 1624612048 72368 afe3f5c885a30bc56e017523bda822ee "xelatex"
   (generated)
   "deck.pdf"
-["xelatex"] 1624449246 "/home/aleksandar/Documents/work/essnet/deck-tex/deck.tex" "deck.xdv" "deck" 1624449253
+["xelatex"] 1624612046 "/home/aleksandar/Documents/work/essnet/deck-tex/deck.tex" "deck.xdv" "deck" 1624612053
   "../figures/01-ega-full.png" 1623756940 411100 41f1e828e246d367ac5a7d4c50f8d473 ""
   "../figures/02-ivi-full.png" 1623759167 215100 beb5aebd1eac4bfecf199bff1780a60d ""
   "../figures/03-radar-ger-hu.png" 1623765720 190065 8fce76f9945b046c5dcfa18aa9fd440c ""
@@ -11,8 +11,13 @@
   "../figures/03-radar-hu-rs.png" 1623765744 222194 542c9fefc8954cdadc2e77a5d6356859 ""
   "../figures/05-scatter-eco.png" 1623772078 90245 f85d3b3581a73af81bd7b27455a52119 ""
   "../figures/99-tree-ea-vs-ld.png" 1623757238 401879 e1b4e1de162cfa98e49a0113d1659117 ""
+  "../figures/albus.jpeg" 1624606541 70972 5be17a8091071b2a3fc7e9a36910ee79 ""
+  "../figures/bs.png" 1624611063 451673 4a8727150c4350c25c692f9b17fea424 ""
+  "../figures/bsa.jpg" 1624606573 58387 27a423c9e18c52a91d39ca18d2e3417b ""
+  "../figures/ess.png" 1624606498 2505 9fed0a59899cb336ba5e2b63483a4b4d ""
+  "../figures/gss.jpg" 1624606484 18136 05c97d08945732a07998e88e070caeae ""
   "/etc/texmf/web2c/texmf.cnf" 1613653039 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/aleksandar/Documents/work/essnet/deck-tex/deck.tex" 1624449246 5014 eb08d619dfb190edbe42ef9d46a1e720 ""
+  "/home/aleksandar/Documents/work/essnet/deck-tex/deck.tex" 1624612045 5777 beeb48ff89200997b906f051c66ce0b2 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -277,16 +282,16 @@
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1581979058 38841 ce3692aa899bb693b90b87eaa5d4d84e ""
   "/usr/share/texmf/web2c/texmf.cnf" 1581979058 38841 ce3692aa899bb693b90b87eaa5d4d84e ""
   "/var/lib/texmf/web2c/xetex/xelatex.fmt" 1623620799 4076424 e88cea285d56fdd0fb0dbb6187ea88ae ""
-  "deck.aux" 1624449248 4427 137a5820c31463e4430837e103e1aa58 "xelatex"
-  "deck.nav" 1624449248 2353 a24205b0a3ec2207b50ba17c205a1295 "xelatex"
-  "deck.out" 1624449248 225 aadbd5ae3df962f54f460e25fec3e732 "xelatex"
-  "deck.tex" 1624449246 5014 eb08d619dfb190edbe42ef9d46a1e720 ""
-  "deck.toc" 1624449248 217 e81d2dfa61460d9653deea26ca624a49 "xelatex"
+  "deck.aux" 1624612048 4567 540e51c430f0c4cb3f294dc9979fe8d5 "xelatex"
+  "deck.nav" 1624612048 2434 51fbb067d1081b43f61754c54f38867d "xelatex"
+  "deck.out" 1624612048 225 aadbd5ae3df962f54f460e25fec3e732 "xelatex"
+  "deck.tex" 1624612045 5777 beeb48ff89200997b906f051c66ce0b2 ""
+  "deck.toc" 1624612048 216 e9f1e3513c040b73b3d82fda707ac9b2 "xelatex"
   (generated)
-  "deck.xdv"
-  "deck.snm"
+  "deck.toc"
   "deck.out"
+  "deck.snm"
+  "deck.aux"
+  "deck.xdv"
   "deck.log"
   "deck.nav"
-  "deck.toc"
-  "deck.aux"
