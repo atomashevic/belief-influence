@@ -1,8 +1,10 @@
-library(networktree)
-library(EGAnet)
+# Filename: 04-network-tree.R
+# This script:
+#   - Plots EGA network on the full sample
+#   - Runs NetworkTree for ROW variable
+#   - Plots NT difference for two levels of ROW
 
-load('data-clean/data-reduced.Rds')
-load('data-clean/data-clean.Rds')
+library(networktree)
 
 netvars <- c(colnames(netdata))
 

@@ -38,7 +38,9 @@ data <- country_data %>% select('Health', 'HCI')
 
 data <- data %>%  filter((Health< 100) & (Health >= 10))
 
-
+#cor(data$Health,data$HCI)
+# r = -0.05
+# p = 0.87
 
 
 png(
@@ -56,7 +58,7 @@ ggplot(data, aes(x = HCI, y = Health)) +
     size = 2,
     stroke = 1
   ) + geom_smooth(method = "lm", se = FALSE, col = "purple") + xlab('HCI') +
-  theme_minimal() + ylab('Health IVI')
+  theme_minimal() + ylab('Health IVI') + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 dev.off()
 
 
@@ -82,11 +84,13 @@ ggplot(data, aes(x = ED, y = Democracy)) +
     size = 2,
     stroke = 1
   ) + geom_smooth(method = "lm", se = FALSE, col = "purple") + xlab('Electoral Democracy Score') +
-  theme_minimal() + ylab('Democracy IVI')
+  theme_minimal() + ylab('Democracy IVI')  + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 dev.off()
 
 
-# Correlation: -0.2935465
+#cor(data$Democracy,data$ED)
+# r = -0.293
+# p = 0.14
 
 data <- country_data %>% select('Democracy', 'DIRank')
 
@@ -107,10 +111,13 @@ ggplot(data, aes(x = DIRank, y = Democracy)) +
     size = 2,
     stroke = 1
   ) + geom_smooth(method = "lm", se = FALSE, col = "purple") + xlab('Democracy Index Ranking') +
-  theme_minimal() + ylab('Democracy IVI')
+  theme_minimal() + ylab('Democracy IVI') + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 dev.off()
 
-# Correlation: 0.255278
+# cor(data$Democracy,data$DIRank)
+# r = 0.255
+# p = 0.2
+
 
 data <- country_data %>% select('Parliament', 'RoL')
 
@@ -132,7 +139,9 @@ ggplot(data, aes(x = RoL, y = Parliament)) +
     size = 2,
     stroke = 1
   ) + geom_smooth(method = "lm", se = FALSE, col = "purple") + xlab('Rule of Law') +
-  theme_minimal() + ylab('Pairlament IVI')
+  theme_minimal() + ylab('Pairlament IVI') + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 dev.off()
 
-# Correlation: -0.221346
+cor(data$Parliament,data$RoL)
+# r = -0.221
+# p = 0.27

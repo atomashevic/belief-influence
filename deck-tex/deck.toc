@@ -1,4 +1,0 @@
-\beamer@sectionintoc {1}{Research problem}{3}{0}{1}
-\beamer@sectionintoc {2}{Belief networks}{9}{0}{2}
-\beamer@sectionintoc {3}{Integrated Value of Influence}{12}{0}{3}
-\beamer@sectionintoc {4}{Discussion}{18}{0}{4}
