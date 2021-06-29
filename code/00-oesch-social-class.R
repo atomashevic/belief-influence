@@ -1,12 +1,18 @@
+# Filename: 00-oesch-social-class.R
+#
+# This script adds Oesch social class variables to the existing `data` dataframe.
+# Script adapted from: https://people.unil.ch/danieloesch/scripts/
+
+
 library(dplyr)
+library(tidyverse)
 library(questionr)
 library(labelled)
 
 factorsNumeric <-  function(d)
   modifyList(d, lapply(d[, sapply(d, is.factor)], as.numeric))
 
-load('data-raw/data.Rds')
-d <- data_raw
+d <- data
 #### Recode occupation variable (isco08 com 4-digit) for respondents
 
 tail(freq(d$isco08, total = T))
@@ -18,7 +24,7 @@ var_label(d$isco_mainjob) <- "Current occupation of respondent - isco08 4-digit"
 head(freq(d$isco_mainjob, total = T))
 
 
-#### Recode employment status for respondents
+# ### Recode employment status for respondents
 
 freq(d$emplrel, total = T)
 freq(d$emplno, total = T)
@@ -53,9 +59,9 @@ var_label(d$selfem_mainjob) <- "Employment status for respondants"
 freq(d$selfem_mainjob, total = T)
 
 
-#################################################
+# ################################################
 # Create Oesch class schema for respondents
-#################################################
+# ################################################
 
 d$class16_r <- -9
 
@@ -318,13 +324,13 @@ var_label(d$class5_r) <- "Respondent's Oesch class position - 5 classes"
 freq(d$class5_r, total = T)
 
 
-#######################################################################################
+# ######################################################################################
 # Partner's Oesch class position
 # Recode and create variables used to construct class variable for partners
 # Variables used to construct class variable for partners: isco08p, emprelp
-#######################################################################################
+# ######################################################################################
 
-#### Recode occupation variable (isco88 com 4-digit) for partners
+# ### Recode occupation variable (isco88 com 4-digit) for partners
 
 
 tail(freq(d$isco08p, total = T))
@@ -335,7 +341,7 @@ var_label(d$isco_partner) <- "Current occupation of partner - isco08 4-digit"
 
 head(freq(d$isco_partner, total = T))
 
-#### Recode employment status for partners
+# ### Recode employment status for partners
 
 freq(d$emprelp, total = T)
 
@@ -348,9 +354,9 @@ var_label(d$selfem_partner) <- "Employment status for partners"
 freq(d$selfem_partner, total = T)
 
 
-############################################
+# ###########################################
 # Create Oesch class schema for partners
-############################################
+# ###########################################
 
 d$class16_p <- -9
 
@@ -599,11 +605,11 @@ var_label(d$class5_p) <- "Partner's Oesch class position - 5 classes"
 freq(d$class5_p, total = T)
 
 
-####################################################################################################
+# ###################################################################################################
 # Final Oesch class position
 # Merge two class variables (respondents and partners)
 # Assign the partner's Oesch class position when the respondent's Oesch class position is missing:
-####################################################################################################
+# ###################################################################################################
 
 d$class16 <- ifelse(!is.na(d$class16_r), d$class16_r, d$class16_p)
 
@@ -665,16 +671,15 @@ freq(d$class5, total = T)
 d <- subset(d, select = -c(isco_mainjob, emplrel_r, emplno_r, selfem_mainjob, isco_partner, selfem_partner))
 
 
-####################################################################################################
+# ###################################################################################################
 # Convert all labelled variables (haven_labelled class) to factors
 # To convert a specific labelled variable to a factor: d$class16 <- to_factor(d$class16, drop_unused_labels = TRUE)
 # The levels argument allows to specify what should be used as the factor levels, the labels (default), the values or the labels prefixed with values
 # Example with the labels prefixed with values: d$class16 <- to_factor(d$class16, drop_unused_labels = TRUE, levels = "p")
-####################################################################################################
+# ###################################################################################################
 
 d <-  unlabelled(d, drop_unused_labels = TRUE)
-data_clean <- d
-save(data_clean,file='data-clean/data-oesch.Rds')
+data <- d
 ##################################
 # End
 ##################################

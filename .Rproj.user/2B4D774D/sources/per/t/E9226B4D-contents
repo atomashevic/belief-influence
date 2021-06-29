@@ -1,6 +1,0 @@
-
-
-## Install DEB packages from CLI
-
-  dpkg -i packagename.deb
-  

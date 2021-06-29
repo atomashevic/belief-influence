@@ -1,0 +1,263 @@
+library(fmsb)
+
+
+colors_border = c(rgb(0.2, 0.5, 0.5, 0.9),
+                  rgb(0.8, 0.2, 0.5, 0.9) ,
+                  rgb(0.7, 0.5, 0.1, 0.9))
+colors_in = c(rgb(0.2, 0.5, 0.5, 0.4),
+              rgb(0.8, 0.2, 0.5, 0.4) ,
+              rgb(0.7, 0.5, 0.1, 0.4))
+
+country_data <- as.data.frame(read_csv('output/country-data.csv'))
+
+
+## GERMANY ONLY
+
+countries <- c('Germany')
+
+sel_country <-
+  country_data %>% filter(country_data$Country %in% countries)
+rownames(sel_country) <- c('','',countries)
+
+sel_country <-
+  sel_country %>% select(
+    c(
+      "PeopleAllow",
+      "Parliament",
+      "Economy",
+      "Democracy" ,
+      "Education",
+      "Health"  ,
+      "CitInterest"
+    )
+  )
+
+data <- rbind(rep(100, 7) , rep(0, 7) , sel_country)
+rownames(data) <- c('max','min',countries)
+
+png(
+  filename = 'figures/03-radar-ger.png',
+  width = 2000,
+  height = 2000,
+  res = 300
+)
+radarchart(
+  data,
+  cglty = 5,
+  pcol = colors_border ,
+  pfcol = colors_in ,
+  plwd = 4 ,
+  plty = 1,
+  cglcol = "grey",
+  axislabcol = "grey",
+  caxislabels = seq(0, 100, 25),
+  cglwd = 0.5,
+  vlcex = 0.75
+)
+
+legend(x=1, y=0.6, legend = rownames(data[-c(1,2),]), bty = "n", pch=20 , col=colors_in , text.col = "black", cex=0.8, pt.cex=1)
+dev.off()
+## TWO COUNTRIES
+
+countries <- c('Germany', 'Hungary')
+
+
+sel_country <-
+  country_data %>% filter(country_data$Country %in% countries)
+rownames(sel_country) <- c('','',countries)
+
+sel_country <-
+  sel_country %>% select(
+    c(
+      "PeopleAllow",
+      "Parliament",
+      "Economy",
+      "Democracy" ,
+      "Education",
+      "Health"  ,
+      "CitInterest"
+    )
+  )
+
+data <- rbind(rep(100, 7) , rep(0, 7) , sel_country)
+rownames(data) <- c('max','min',countries)
+
+png(
+  filename = 'figures/03-radar-ger-hu.png',
+  width = 2000,
+  height = 2000,
+  res = 300
+)
+radarchart(
+  data,
+  cglty = 5,
+  pcol = colors_border ,
+  pfcol = colors_in ,
+  plwd = 4 ,
+  plty = 1,
+  cglcol = "grey",
+  axislabcol = "grey",
+  caxislabels = seq(0, 100, 25),
+  cglwd = 0.5,
+  vlcex = 0.75
+)
+
+legend(x=1, y=0.6, legend = c('Germany','Hungrary'), bty = "n", pch=20 , col=colors_in , text.col = "black", cex=0.8, pt.cex=1)
+dev.off()
+
+
+
+
+###
+
+
+countries <- c('Germany', 'Hungary', 'Serbia')
+
+sel_country <-
+  country_data %>% filter(country_data$Country %in% countries)
+rownames(sel_country) <- c('','',countries)
+
+sel_country <-
+  sel_country %>% select(
+    c(
+      "PeopleAllow",
+      "Parliament",
+      "Economy",
+      "Democracy" ,
+      "Education",
+      "Health"  ,
+      "CitInterest"
+    )
+  )
+
+data <- rbind(rep(100, 7) , rep(0, 7) , sel_country)
+rownames(data) <- c('max','min',countries)
+
+png(
+  filename = 'figures/03-radar-hu-rs.png',
+  width = 2000,
+  height = 2000,
+  res = 300
+)
+radarchart(
+  data,
+  cglty = 5,
+  pcol = colors_border ,
+  pfcol = colors_in ,
+  plwd = 4 ,
+  plty = 1,
+  cglcol = "grey",
+  axislabcol = "grey",
+  caxislabels = seq(0, 100, 25),
+  cglwd = 0.5,
+  vlcex = 0.75
+)
+
+legend(x=1, y=0.6, legend = c('Germany','Hungrary','Serbia'), bty = "n", pch=20 , col=colors_in , text.col = "black", cex=0.8, pt.cex=1)
+dev.off()
+
+
+## RADAR PLOT FOR ROW
+
+class_data <- as.data.frame(read_csv('output/ivi-class.csv'))
+rownames(class_data) <- rownames(ivi_class)
+
+
+# FIRST CLASS
+c = c('Self-employed professionals and large employers')
+
+sel_class <-
+  class_data %>% filter(row.names(class_data) %in% c)
+
+data <- rbind(rep(100, 7) , rep(0, 7) , sel_class)
+rownames(data) <- c('max','min',c)
+
+png(
+  filename = 'figures/04-radar-class-1.png',
+  width = 2000,
+  height = 2000,
+  res = 300
+)
+radarchart(
+  data,
+  cglty = 5,
+  pcol = colors_border ,
+  pfcol = colors_in ,
+  plwd = 4 ,
+  plty = 1,
+  cglcol = "grey",
+  axislabcol = "grey",
+  caxislabels = seq(0, 100, 25),
+  cglwd = 0.5,
+  vlcex = 0.75
+)
+
+legend(x=0.92, y=0.6, legend = c('Large employers'), bty = "n", pch=20 , col=colors_in , text.col = "black", cex=0.6, pt.cex=1)
+dev.off()
+
+# SECOND CLASS
+
+c = c('Self-employed professionals and large employers','Production workers')
+
+sel_class <-
+  class_data %>% filter(row.names(class_data) %in% c)
+
+data <- rbind(rep(100, 7) , rep(0, 7) , sel_class)
+rownames(data) <- c('max','min',c)
+
+png(
+  filename = 'figures/04-radar-class-2.png',
+  width = 2000,
+  height = 2000,
+  res = 300
+)
+radarchart(
+  data,
+  cglty = 5,
+  pcol = colors_border ,
+  pfcol = colors_in ,
+  plwd = 4 ,
+  plty = 1,
+  cglcol = "grey",
+  axislabcol = "grey",
+  caxislabels = seq(0, 100, 25),
+  cglwd = 0.5,
+  vlcex = 0.75
+)
+
+legend(x=0.92, y=0.6, legend = c('Large employers','Prod. workers'), bty = "n", pch=20 , col=colors_in , text.col = "black", cex=0.6, pt.cex=1)
+dev.off()
+
+
+# THIRD
+
+c = c('Self-employed professionals and large employers','Production workers','Clerks')
+
+sel_class <-
+  class_data %>% filter(row.names(class_data) %in% c)
+
+data <- rbind(rep(100, 7) , rep(0, 7) , sel_class)
+rownames(data) <- c('max','min',c)
+
+png(
+  filename = 'figures/04-radar-class-3.png',
+  width = 2000,
+  height = 2000,
+  res = 300
+)
+radarchart(
+  data,
+  cglty = 5,
+  pcol = colors_border ,
+  pfcol = colors_in ,
+  plwd = 4 ,
+  plty = 1,
+  cglcol = "grey",
+  axislabcol = "grey",
+  caxislabels = seq(0, 100, 25),
+  cglwd = 0.5,
+  vlcex = 0.75
+)
+
+legend(x=0.92, y=0.6, legend = c('Large employers','Prod. workers','Clerks'), bty = "n", pch=20 , col=colors_in , text.col = "black", cex=0.6, pt.cex=1)
+dev.off()
