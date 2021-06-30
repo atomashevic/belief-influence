@@ -3,20 +3,21 @@
 #   - Plots EGA network on the full sample
 #   - Runs NetworkTree for ROW variable
 #   - Plots NT difference for two levels of ROW
+# Output:
+#   - 'figures/01-ega-full.png' EGA glasso partial correlation network plot
+#   - 'figures/99-tree-ea-vs-ld.png' Result of compare function for networks
+#     estimated on EA and LD subsamples
+
 
 library(networktree)
 
 netvars <- c(colnames(netdata))
 
-
-
 ega <-
-  EGA(
-    data[, netvars],
-    model = 'glasso',
-    algorithm = 'louvain',
-    plot.EGA = FALSE
-  )
+  EGA(data[, netvars],
+      model = 'glasso',
+      algorithm = 'louvain',
+      plot.EGA = FALSE)
 plotargs = list(
   vsize = 25,
   alpha = 0.9,
@@ -27,20 +28,42 @@ plotargs = list(
   legend.size = 0
 )
 
-png(filename='figures/01-ega-full.png',width = 2750,height=2750,res=300)
-plot(ega,plot.args=plotargs)
+png(
+  filename = 'figures/01-ega-full.png',
+  width = 2750,
+  height = 2750,
+  res = 300
+)
+plot(ega, plot.args = plotargs)
 dev.off()
 
 data$ROW <- as.factor(data$ROW)
-levels(data$ROW) <- c('EA','ED','LD')
+levels(data$ROW) <- c('EA', 'ED', 'LD')
+# 'EA' - Electoral Autocracy
+# 'ED' - Electoral Democracy
+# 'LD' - Liberal Democracy
 
-nt1 <- networktree(nodevars=data[,netvars],
-                   splitvars=data[,c("ROW")],
-                   transform='glasso',
-                   method='mob')
+nt1 <- networktree(
+  nodevars = data[, netvars],
+  splitvars = data[, c("ROW")],
+  transform = 'glasso',
+  method = 'mob'
+)
 
-plot(nt1,labels=netvars)
+plot(nt1, labels = netvars) # Network tree plot with significant differences
 
-png(filename='figures/99-tree-ea-vs-ld.png',width = 3500,height=2000,res=300)
-comparetree(nt1, id1 = 3, id2 = 5, highlights = 3, plot = TRUE,labels=netvars)
+png(
+  filename = 'figures/99-tree-ea-vs-ld.png',
+  width = 3500,
+  height = 2000,
+  res = 300
+)
+comparetree(
+  nt1,
+  id1 = 3,
+  id2 = 5,
+  highlights = 3,
+  plot = TRUE,
+  labels = netvars
+)
 dev.off()

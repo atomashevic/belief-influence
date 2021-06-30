@@ -1,18 +1,31 @@
+# Filename: 05-IVI-plots.R
+# This script:
+#   - Calculates IVI on complete sample and plots IVI network
+#   - Calculates IVI on country subsamples and writes res to CSV
+#   - Runs NetworkTree for ROW variable
+#   - Plots NT difference for two levels of ROW
+# Output:
+#   - 'figures/02-ivi-full.png' Network plot with node size and color scaled
+#     by their IVI
+#   - 'figures/99-tree-ea-vs-ld.png' Result of compare function for networks
+#     estimated on EA and LD subsamples
+#   - 'csv/ivi-country.csv IVI per node per country subsample
+#   - 'csv/country-data.csv' Combine country level IVI with external data
+#     on country level (political and economic indices)
+#   - 'figures/02-ivi-NODE.png' Histograms of specific node IVI per country
+
 library(influential)
 library(igraph)
 library(tidyverse)
 library(EGAnet)
 
-load('data-clean/data-reduced.Rds')
-load('data-clean/data-clean.Rds')
-
 netvars <- c(colnames(netdata))
 
 countries <-
-  as.data.frame(read_csv('data-clean/external-data.csv'))['Country']
+  as.data.frame(read_csv('csv/external-data.csv'))['Country']
 
 row <-
-  as.data.frame(read_csv('data-clean/external-data.csv'))['Country']
+  as.data.frame(read_csv('csv/external-data.csv'))['Country']
 
 ivi_group_discrete <- function(data, netvars, filtervar, filter)
 {
@@ -20,7 +33,7 @@ ivi_group_discrete <- function(data, netvars, filtervar, filter)
   resmat = matrix(0, nrow(filter), length(netvars))
   for (i in 1:nrow(filter))
   {
-    datai = data[which(data[filtervar] == filter[i, ]), ]
+    datai = data[which(data[filtervar] == filter[i,]),]
     ega <-
       EGA(datai[, netvars],
           model = 'glasso',
@@ -40,7 +53,7 @@ ivi_group_discrete <- function(data, netvars, filtervar, filter)
       weights = abs(E(g)$weight),
       d = 1
     )
-    resmat[i, ] = ivi
+    resmat[i,] = ivi
   }
   resmat = as.data.frame(resmat)
   colnames(resmat) <- rownames(as.data.frame(ivi))
@@ -70,7 +83,7 @@ ivi <- ivi(
   scaled = TRUE,
   mode = 'all',
   weights = E(g)$weight,
-  d = 1
+  d = 1 # Small diameter due to small network size
 )
 
 png(
@@ -105,13 +118,14 @@ dev.off()
 ### IVI BY COUNTRY
 
 ivi_cntry <- ivi_group_discrete(data, netvars, 'Country', countries)
-write_csv(ivi_cntry, file = 'output/ivi-country.csv')
+write_csv(ivi_cntry, file = 'csv/ivi-country.csv')
 
 country_data <- cbind(ext, ivi_cntry)
-write_csv(country_data, file = 'output/country-data.csv')
+write_csv(country_data, file = 'csv/country-data.csv')
 
 
 library(ggplot2)
+
 pdata <- cbind(countries[, 1], ivi_cntry)
 colnames(pdata)[1] = 'Country'
 
@@ -162,19 +176,3 @@ pdata %>% ggplot(aes(
 theme_bw()
 dev.off()
 
-
-### IVI BY ROW
-
-row = as.data.frame(c(1, 2, 3))
-
-ivi_row <- ivi_group_discrete(data, netvars, 'ROW', row)
-write_csv(ivi_row, file = 'output/ivi-row.csv')
-
-### IVI BY CLASS
-
-classes = as.data.frame(levels(data$Class8))
-ivi_class <- ivi_group_discrete(data, netvars, 'Class8', classes)
-write_csv(ivi_class, file = 'output/ivi-class.csv',)
-
-
-### IVI BY STFO GOV

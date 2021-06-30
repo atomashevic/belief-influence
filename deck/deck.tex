@@ -1,4 +1,4 @@
-% !TEX program = lualatex
+% !TEX program = XeLaTeX
 %\documentclass[10pt]{beamer}
 \documentclass[hyperref={pdfpagemode=FullScreen},aspectratio=169,10pt]{beamer}
 \usetheme[subsectionpage=progressbar]{metropolis}
@@ -12,7 +12,7 @@
 \usepackage{caption}
 \usepackage{amsmath}
 \usepackage[mathrm=sym]{unicode-math}
-\setmathfont{Fira Math}
+ \setmathfont{Fira Math}
 \usepackage{graphicx} 
 \usepackage{outlines}
 \usepackage{appendixnumberbeamer}
@@ -242,6 +242,9 @@
 
 \begin{frame}{IVI (Salvaty, Ramialson \& Currie, 2020)}
 \Large
+
+\begin{columns}[T]
+  \column{0.4\textwidth}
   $$
   \mathrm{IVI}_i = (\mathrm{Hub}_i)(\mathrm{Spread}_i)
   $$
@@ -262,6 +265,8 @@
   \begin{center}
     Scaled $IVI \in [0,100]$
   \end{center}
+  
+  \end{columns}
 \end{frame}
 
 
@@ -336,10 +341,41 @@
     \includegraphics[width=0.75\linewidth]{05-scatter-RoL.png}
   \end{minipage}
 \end{columns}
+\end{frame}
 
+\begin{frame}{Summary}
+
+\begin{itemize}
+\item<+-> After removing redundancies we have fully-connected, simple belief network
+\item<+-> Network structure differences between subgroups (regime type)
+\item<+-> High Influence of beliefs related to problematic domains for a given society
+\end{itemize}
 
 \end{frame}
 
 
+\begin{frame}{Directions}
+
+\begin{itemize}
+\item Differences between ruling and opposition parties voters
+\item Pairwise Ising model (binary beliefs)
+\item Compare with other influence/centrality metrics
+\item Investigate time temporal stability in panel surveys
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+
+\begin{center}
+\Large
+\alert{Thank You!}
+\vspace{1cm}
+\textbf{github.com/atomashevic/essnet}
+\vspace{1cm}
+\alert{atommashevic@ff.uns.ac.rs}
+\end{center}
+
+
+\end{frame}
 
 \end{document}
