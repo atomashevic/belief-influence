@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.6.7)  30 JUN 2021 14:27
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.6.7)  1 JUL 2021 15:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1734,26 +1734,26 @@ echnical note
 ) (./deck.aux)
 \openout1 = `deck.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -1791,7 +1791,7 @@ LaTeX Font Info:    ... okay on input line 47.
 
 ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box79
-Package hyperref Info: Link coloring OFF on input line 47.
+Package hyperref Info: Link coloring OFF on input line 52.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -1801,73 +1801,73 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count354
 )
-LaTeX Info: Redefining \ref on input line 47.
-LaTeX Info: Redefining \pageref on input line 47.
-LaTeX Info: Redefining \nameref on input line 47.
+LaTeX Info: Redefining \ref on input line 52.
+LaTeX Info: Redefining \pageref on input line 52.
+LaTeX Info: Redefining \nameref on input line 52.
 
 (./deck.out) (./deck.out)
 \@outlinefile=\write5
 \openout5 = `deck.out'.
 
 LaTeX Font Info:    Encoding `TU' has changed to `OT1' for symbol font
-(Font)              `operators' in the math version `normal' on input line 47.
+(Font)              `operators' in the math version `normal' on input line 52.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/FiraMath(1)/m/n --> OT1/cmss/m/n on input line 47.
+(Font)                  TU/FiraMath(1)/m/n --> OT1/cmss/m/n on input line 52.
 LaTeX Font Info:    Encoding `TU' has changed to `OT1' for symbol font
-(Font)              `operators' in the math version `bold' on input line 47.
+(Font)              `operators' in the math version `bold' on input line 52.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/FiraMath(1)/bx/n --> OT1/cmss/bx/n on input line 47.
+(Font)                  TU/FiraMath(1)/bx/n --> OT1/cmss/bx/n on input line 52.
 
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmr/m/n on input line 47.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 47.
+(Font)                  OT1/cmss/m/n --> TU/lmr/m/n on input line 52.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
 (Font)                  OT1/cmr/bx/n --> TU/FiraSansBook(0)/bx/n on input line 
-47.
+52.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
 (Font)                  OT1/cmr/bx/n --> TU/FiraSansBook(0)/bx/n on input line 
-47.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 47.
+52.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
 (Font)                  TU/FiraSansBook(1)/m/n --> TU/FiraSansBook(0)/m/n on in
-put line 47.
+put line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
 (Font)                  TU/FiraSansBook(1)/bx/n --> TU/FiraSansBook(0)/m/n on i
-nput line 47.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 47.
+nput line 52.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
 (Font)                  OT1/cmr/m/it --> TU/FiraSansBook(0)/m/it on input line 
-47.
+52.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> TU/FiraSansBook(0)/m/it on input line
- 47.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 47.
+ 52.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/FiraMono(0)/m/n on input line 47.
+(Font)                  OT1/cmtt/m/n --> TU/FiraMono(0)/m/n on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/FiraMono(0)/m/n on input line 47.
+(Font)                  OT1/cmtt/m/n --> TU/FiraMono(0)/m/n on input line 52.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
 (Font)                  TU/FiraSansBook(0)/m/n --> TU/FiraSansBook(0)/bx/n on i
-nput line 47.
+nput line 52.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
 (Font)                  TU/FiraSansBook(0)/m/it --> TU/FiraSansBook(0)/bx/it on
- input line 47.
+ input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmr/bx/n on input line 47.
+(Font)                  OT1/cmss/bx/n --> TU/lmr/bx/n on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
 (Font)                  TU/FiraSansBook(0)/bx/n --> TU/FiraSansBook(0)/bx/n on 
-input line 47.
+input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
 (Font)                  TU/FiraSansBook(0)/m/n --> TU/FiraSansBook(0)/bx/n on i
-nput line 47.
+nput line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  TU/FiraSansBook(0)/m/it --> TU/FiraSansBook(0)/bx/it on
- input line 47.
+ input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  TU/FiraMono(0)/m/n --> TU/FiraMono(0)/bx/n on input lin
-e 47.
+e 52.
 
 (/usr/share/texlive/texmf-dist/tex/latex/translator/translator-basic-dictionary
 -English.dict
@@ -1893,47 +1893,47 @@ Dictionary: translator-numbers-dictionary, Language: English
 ry-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 ) ABD: EverySelectfont initializing macros
-LaTeX Info: Redefining \selectfont on input line 47.
+LaTeX Info: Redefining \selectfont on input line 52.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 47.
+(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  TU/FiraSansBook(0)/m/it --> TU/lmr/m/it on input line 4
-7.
+(Font)                  TU/FiraSansBook(0)/m/it --> TU/lmr/m/it on input line 5
+2.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  TU/FiraSansBook(0)/bx/n --> TU/lmr/bx/n on input line 4
-7.
+(Font)                  TU/FiraSansBook(0)/bx/n --> TU/lmr/bx/n on input line 5
+2.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
 (Font)                  TU/FiraMono(0)/m/n --> TU/FiraMono(0)/m/n on input line
- 47.
+ 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  TU/FiraMono(0)/bx/n --> TU/FiraMono(0)/bx/n on input li
-ne 47.
+ne 52.
 
 Package pgfplots notification 'compat/show suggested version=true': you might b
 enefit from \pgfplotsset{compat=1.15} (current compat level: 1.9).
 
 (./deck.nav)
-Overfull \vbox (37.73596pt too high) detected at line 50
+LaTeX Font Info:    Font shape `TU/FiraMath(2)/m/n' will be
+(Font)              scaled to size 5.00008pt on input line 52.
+LaTeX Font Info:    Font shape `TU/FiraMath(3)/m/n' will be
+(Font)              scaled to size 4.99992pt on input line 52.
+LaTeX Font Info:    Try loading font information for U+msa on input line 52.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 52.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+Overfull \vbox (18.84245pt too high) detected at line 55
  []
 
 [1
 
-]
-File: ../figures/ess.png Graphic file (type bmp)
-<../figures/ess.png>
-File: ../figures/bsa.jpg Graphic file (type bmp)
-<../figures/bsa.jpg>
-File: ../figures/albus.jpeg Graphic file (type bmp)
-<../figures/albus.jpeg>
-File: ../figures/gss.jpg Graphic file (type bmp)
-<../figures/gss.jpg>
-
-Overfull \vbox (41.9935pt too high) detected at line 87
- []
-
-[2
+] [2
 
 ]
 File: ../figures/ess.png Graphic file (type bmp)
@@ -1945,41 +1945,41 @@ File: ../figures/albus.jpeg Graphic file (type bmp)
 File: ../figures/gss.jpg Graphic file (type bmp)
 <../figures/gss.jpg>
 
-Overfull \vbox (41.9935pt too high) detected at line 87
+Overfull \vbox (15.20435pt too high) detected at line 103
  []
 
 [3
 
 ]
-File: ../figures/bs.png Graphic file (type bmp)
-<../figures/bs.png>
-LaTeX Font Info:    Font shape `TU/FiraMath(2)/m/n' will be
-(Font)              scaled to size 10.00015pt on input line 114.
-LaTeX Font Info:    Font shape `TU/FiraMath(2)/m/n' will be
-(Font)              scaled to size 7.20906pt on input line 114.
-LaTeX Font Info:    Font shape `TU/FiraMath(2)/m/n' will be
-(Font)              scaled to size 5.83278pt on input line 114.
-LaTeX Font Info:    Font shape `TU/FiraMath(3)/m/n' will be
-(Font)              scaled to size 9.99985pt on input line 114.
-LaTeX Font Info:    Font shape `TU/FiraMath(3)/m/n' will be
-(Font)              scaled to size 7.20883pt on input line 114.
-LaTeX Font Info:    Font shape `TU/FiraMath(3)/m/n' will be
-(Font)              scaled to size 5.83261pt on input line 114.
-LaTeX Font Info:    Try loading font information for U+msa on input line 114.
- (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 114.
+File: ../figures/ess.png Graphic file (type bmp)
+<../figures/ess.png>
+File: ../figures/bsa.jpg Graphic file (type bmp)
+<../figures/bsa.jpg>
+File: ../figures/albus.jpeg Graphic file (type bmp)
+<../figures/albus.jpeg>
+File: ../figures/gss.jpg Graphic file (type bmp)
+<../figures/gss.jpg>
 
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-Missing character: There is no ⇒ in font cmss10!
- [4
+Overfull \vbox (15.20435pt too high) detected at line 103
+ []
+
+[4
 
 ]
 File: ../figures/bs.png Graphic file (type bmp)
 <../figures/bs.png>
+LaTeX Font Info:    Font shape `TU/FiraMath(2)/m/n' will be
+(Font)              scaled to size 10.00015pt on input line 130.
+LaTeX Font Info:    Font shape `TU/FiraMath(2)/m/n' will be
+(Font)              scaled to size 7.20906pt on input line 130.
+LaTeX Font Info:    Font shape `TU/FiraMath(2)/m/n' will be
+(Font)              scaled to size 5.83278pt on input line 130.
+LaTeX Font Info:    Font shape `TU/FiraMath(3)/m/n' will be
+(Font)              scaled to size 9.99985pt on input line 130.
+LaTeX Font Info:    Font shape `TU/FiraMath(3)/m/n' will be
+(Font)              scaled to size 7.20883pt on input line 130.
+LaTeX Font Info:    Font shape `TU/FiraMath(3)/m/n' will be
+(Font)              scaled to size 5.83261pt on input line 130.
 Missing character: There is no ⇒ in font cmss10!
  [5
 
@@ -1990,17 +1990,20 @@ Missing character: There is no ⇒ in font cmss10!
  [6
 
 ]
-File: ../figures/ess-map.jpg Graphic file (type bmp)
-<../figures/ess-map.jpg>
+File: ../figures/bs.png Graphic file (type bmp)
+<../figures/bs.png>
+Missing character: There is no ⇒ in font cmss10!
  [7
 
 ]
 File: ../figures/ess-map.jpg Graphic file (type bmp)
 <../figures/ess-map.jpg>
+ [8
 
-[8
-
-] [9
+]
+File: ../figures/ess-map.jpg Graphic file (type bmp)
+<../figures/ess-map.jpg>
+ [9
 
 ] [10
 
@@ -2010,46 +2013,38 @@ File: ../figures/ess-map.jpg Graphic file (type bmp)
 
 ] [13
 
+] [14
+
 ]
 File: ../figures/01-ega-full.png Graphic file (type bmp)
 <../figures/01-ega-full.png>
 
-Overfull \vbox (24.34393pt too high) detected at line 233
- []
-
-[14
-
-]
-File: ../figures/99-tree-ea-vs-ld.png Graphic file (type bmp)
-<../figures/99-tree-ea-vs-ld.png>
-
-Overfull \vbox (3.71947pt too high) detected at line 241
+Overfull \vbox (5.45042pt too high) detected at line 249
  []
 
 [15
 
 ]
-LaTeX Font Info:    Font shape `TU/FiraMath(2)/m/n' will be
-(Font)              scaled to size 14.4002pt on input line 270.
-LaTeX Font Info:    Font shape `TU/FiraMath(2)/m/n' will be
-(Font)              scaled to size 7.0001pt on input line 270.
-LaTeX Font Info:    Font shape `TU/FiraMath(3)/m/n' will be
-(Font)              scaled to size 14.39977pt on input line 270.
-LaTeX Font Info:    Font shape `TU/FiraMath(3)/m/n' will be
-(Font)              scaled to size 6.9999pt on input line 270.
-Missing character: There is no ′ in font cmss10!
-Missing character: There is no ′ in font cmss10!
-Missing character: There is no ′ in font cmss10!
-Missing character: There is no ′ in font cmss10!
-Missing character: There is no ′ in font cmss10!
-Missing character: There is no ′ in font cmss10!
+File: ../figures/99-tree-ea-vs-ld.png Graphic file (type bmp)
+<../figures/99-tree-ea-vs-ld.png>
+ [16
 
-Overfull \hbox (42.43176pt too wide) detected at line 270
-\OT1/cmss/m/n/14.4 Spread[] = [] []
- []
-
-Missing character: There is no ∈ in font cmss12!
-[16
+]
+LaTeX Font Info:    Font shape `TU/FiraMath(2)/m/n' will be
+(Font)              scaled to size 14.4002pt on input line 279.
+LaTeX Font Info:    Font shape `TU/FiraMath(2)/m/n' will be
+(Font)              scaled to size 7.0001pt on input line 279.
+LaTeX Font Info:    Font shape `TU/FiraMath(3)/m/n' will be
+(Font)              scaled to size 14.39977pt on input line 279.
+LaTeX Font Info:    Font shape `TU/FiraMath(3)/m/n' will be
+(Font)              scaled to size 6.9999pt on input line 279.
+Missing character: There is no ′ in font cmss10!
+Missing character: There is no ′ in font cmss10!
+Missing character: There is no ′ in font cmss10!
+Missing character: There is no ′ in font cmss10!
+Missing character: There is no ′ in font cmss10!
+Missing character: There is no ′ in font cmss10!
+ [17
 
 ]
 Missing character: There is no ′ in font cmss10!
@@ -2058,13 +2053,7 @@ Missing character: There is no ′ in font cmss10!
 Missing character: There is no ′ in font cmss10!
 Missing character: There is no ′ in font cmss10!
 Missing character: There is no ′ in font cmss10!
-
-Overfull \hbox (42.43176pt too wide) detected at line 270
-\OT1/cmss/m/n/14.4 Spread[] = [] []
- []
-
-Missing character: There is no ∈ in font cmss12!
-[17
+ [18
 
 ]
 Missing character: There is no ′ in font cmss10!
@@ -2073,72 +2062,58 @@ Missing character: There is no ′ in font cmss10!
 Missing character: There is no ′ in font cmss10!
 Missing character: There is no ′ in font cmss10!
 Missing character: There is no ′ in font cmss10!
-
-Overfull \hbox (42.43176pt too wide) detected at line 270
-\OT1/cmss/m/n/14.4 Spread[] = [] []
- []
-
-Missing character: There is no ∈ in font cmss12!
-[18
+ [19
 
 ]
 File: ../figures/02-ivi-full.png Graphic file (type bmp)
 <../figures/02-ivi-full.png>
 
-Overfull \vbox (51.0203pt too high) detected at line 285
- []
-
-[19
-
-]
-File: ../figures/03-radar-ger.png Graphic file (type bmp)
-<../figures/03-radar-ger.png>
-
-Overfull \vbox (73.77374pt too high) detected at line 294
+Overfull \vbox (23.01805pt too high) detected at line 294
  []
 
 [20
 
 ]
-File: ../figures/03-radar-ger-hu.png Graphic file (type bmp)
-<../figures/03-radar-ger-hu.png>
+File: ../figures/03-radar-ger.png Graphic file (type bmp)
+<../figures/03-radar-ger.png>
 
-Overfull \vbox (73.77374pt too high) detected at line 302
+Overfull \vbox (54.88023pt too high) detected at line 303
  []
 
 [21
 
 ]
-File: ../figures/03-radar-hu-rs.png Graphic file (type bmp)
-<../figures/03-radar-hu-rs.png>
+File: ../figures/03-radar-ger-hu.png Graphic file (type bmp)
+<../figures/03-radar-ger-hu.png>
 
-Overfull \vbox (73.77374pt too high) detected at line 312
+Overfull \vbox (54.88023pt too high) detected at line 311
  []
 
 [22
 
 ]
-File: ../figures/05-scatter-eco.png Graphic file (type bmp)
-<../figures/05-scatter-eco.png>
-LaTeX Font Info:    Font shape `TU/FiraMath(2)/m/n' will be
-(Font)              scaled to size 9.00014pt on input line 324.
-LaTeX Font Info:    Font shape `TU/FiraMath(2)/m/n' will be
-(Font)              scaled to size 6.00009pt on input line 324.
-LaTeX Font Info:    Font shape `TU/FiraMath(2)/m/n' will be
-(Font)              scaled to size 5.00008pt on input line 324.
-LaTeX Font Info:    Font shape `TU/FiraMath(3)/m/n' will be
-(Font)              scaled to size 8.99986pt on input line 324.
-LaTeX Font Info:    Font shape `TU/FiraMath(3)/m/n' will be
-(Font)              scaled to size 5.99991pt on input line 324.
-LaTeX Font Info:    Font shape `TU/FiraMath(3)/m/n' will be
-(Font)              scaled to size 4.99992pt on input line 324.
-Missing character: There is no − in font cmss9!
-Missing character: There is no − in font cmss9!
+File: ../figures/03-radar-hu-rs.png Graphic file (type bmp)
+<../figures/03-radar-hu-rs.png>
 
-Overfull \vbox (5.98018pt too high) detected at line 324
+Overfull \vbox (54.88023pt too high) detected at line 321
  []
 
 [23
+
+]
+File: ../figures/05-scatter-eco.png Graphic file (type bmp)
+<../figures/05-scatter-eco.png>
+LaTeX Font Info:    Font shape `TU/FiraMath(2)/m/n' will be
+(Font)              scaled to size 9.00014pt on input line 333.
+LaTeX Font Info:    Font shape `TU/FiraMath(2)/m/n' will be
+(Font)              scaled to size 6.00009pt on input line 333.
+LaTeX Font Info:    Font shape `TU/FiraMath(3)/m/n' will be
+(Font)              scaled to size 8.99986pt on input line 333.
+LaTeX Font Info:    Font shape `TU/FiraMath(3)/m/n' will be
+(Font)              scaled to size 5.99991pt on input line 333.
+Missing character: There is no − in font cmss9!
+Missing character: There is no − in font cmss9!
+ [24
 
 ]
 File: ../figures/05-scatter-ED.png Graphic file (type bmp)
@@ -2147,9 +2122,7 @@ File: ../figures/05-scatter-health.png Graphic file (type bmp)
 <../figures/05-scatter-health.png>
 File: ../figures/05-scatter-RoL.png Graphic file (type bmp)
 <../figures/05-scatter-RoL.png>
- [24
-
-] [25
+ [25
 
 ] [26
 
@@ -2158,6 +2131,8 @@ File: ../figures/05-scatter-RoL.png Graphic file (type bmp)
 ] [28
 
 ] [29
+
+] [30
 
 ]
 \tf@nav=\write6
@@ -2169,19 +2144,19 @@ File: ../figures/05-scatter-RoL.png Graphic file (type bmp)
 \tf@snm=\write8
 \openout8 = `deck.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 381.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 381.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 390.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 390.
  (./deck.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 381.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 381.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 390.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 390.
  ) 
 Here is how much of TeX's memory you used:
- 48688 strings out of 493007
- 1104158 string characters out of 6136720
+ 48665 strings out of 493007
+ 1103433 string characters out of 6136720
  1382740 words of memory out of 5000000
- 51839 multiletter control sequences out of 15000+600000
- 539787 words of font info for 116 fonts, out of 8000000 for 9000
+ 51815 multiletter control sequences out of 15000+600000
+ 539795 words of font info for 117 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 72i,13n,98p,10464b,874s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 72i,14n,98p,10464b,864s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on deck.pdf (29 pages).
+Output written on deck.pdf (30 pages).

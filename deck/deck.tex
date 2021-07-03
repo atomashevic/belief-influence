@@ -31,6 +31,11 @@
 \theoremstyle{definition}
 \metroset{block=fill}
 
+\setbeamertemplate{footline}[text line]{%
+  \parbox{\linewidth}{\vspace*{-8pt} \textbf{A. Tomašević} \hfill \textbf{07/08/21} \hfill \textbf{Networks 2021} \hfill \textbf{github.com/atomasevic/essnet}}}
+\setbeamertemplate{navigation symbols}{}
+
+
 \definecolor{Purple}{HTML}{911146}
 \definecolor{Orange}{HTML}{CF4A30}
 \setbeamercolor{alerted text}{fg=Orange}
@@ -57,6 +62,17 @@
 
 % \section{Research problem}
 
+\begin{frame}{Overview}
+\Large
+1. \textbf{Motivation} - Belief systems in large surveys \\
+\vspace{1cm}
+2. \textbf{Analytical strategy} - Belief networks \\ 
+\vspace{1cm}
+3. \textbf{Results} - Influence of beliefs \\
+\vspace{1cm}
+4. \textbf{Future directions}
+
+\end{frame}
 \begin{frame}{Large-scale surveys}
 \large
 \begin{columns}[T]
@@ -78,10 +94,10 @@
   \end{column}
   \hfill
   \begin{column}{.28\textwidth}
-    \includegraphics[width=3cm]{ess.png} \\
-    \includegraphics[width=3cm]{bsa.jpg} \\
-    \includegraphics[width=3cm]{albus.jpeg} \\
-    \includegraphics[width=3cm]{gss.jpg}
+    \includegraphics[width=2.9cm]{ess.png} \\
+    \includegraphics[width=2.9cm]{bsa.jpg} \\
+    \includegraphics[width=2.9cm]{albus.jpeg} \\
+    \includegraphics[width=2.9cm]{gss.jpg}
   \end{column}
 \end{columns}
 \end{frame}
@@ -243,8 +259,6 @@
 \begin{frame}{IVI (Salvaty, Ramialson \& Currie, 2020)}
 \Large
 
-\begin{columns}[T]
-  \column{0.4\textwidth}
   $$
   \mathrm{IVI}_i = (\mathrm{Hub}_i)(\mathrm{Spread}_i)
   $$
@@ -262,11 +276,6 @@
 
   \pause
 
-  \begin{center}
-    Scaled $IVI \in [0,100]$
-  \end{center}
-  
-  \end{columns}
 \end{frame}
 
 
@@ -278,7 +287,7 @@
 {\setbeamercolor{background canvas}{bg=white} \begin{frame}
   \begin{figure}
   \begin{flushleft}
-  \includegraphics[width=0.6\paperwidth]{02-ivi-full.png}
+  \includegraphics[width=0.58\paperwidth]{02-ivi-full.png}
   \end{flushleft}
 
   \end{figure}
@@ -368,9 +377,9 @@
 
 \begin{center}
 \Large
-\alert{Thank You!}
+\alert{Thank You!} \\ 
 \vspace{1cm}
-\textbf{github.com/atomashevic/essnet}
+\textbf{github.com/atomashevic/essnet} \\
 \vspace{1cm}
 \alert{atommashevic@ff.uns.ac.rs}
 \end{center}
