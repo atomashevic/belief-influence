@@ -1,12 +1,10 @@
 % !TEX program = xelatex
-%\documentclass[10pt]{beamer}
 \documentclass[hyperref={pdfpagemode=FullScreen},aspectratio=169,10pt]{beamer}
 \usetheme[subsectionpage=progressbar]{metropolis}
 \setbeamertemplate{section in toc}[sections numbered]
 \setbeamertemplate{subsection in toc}[subsections numbered]
 \metroset{progressbar=frametitle}
 \metroset{numbering=none}
-%W\usepackage[utf8]{inputenc}
 \usepackage{ragged2e}
 \usepackage{ulem}
 \usepackage{caption}
@@ -47,20 +45,11 @@
 \date{July 2021}
 \author{Aleksandar Tomašević}
 \institute{University of Novi Sad}
-%\titlegraphic{\hfill\includegraphics[height=1.9cm]{ff.pdf}}
 \hbadness=99999
 \begin{document}
 \begin{frame}
   \titlepage
 \end{frame}
-
-
-% \begin{frame}
-% \tableofcontents[hideallsubsections]
-% \end{frame}
-
-
-% \section{Research problem}
 
 \begin{frame}{Overview}
   \Large
@@ -70,7 +59,7 @@
   \vspace{1cm}
   3. \textbf{Results} - Influence of beliefs \\
   \vspace{1cm}
-  % 4. \textbf{Future directions}
+  4. \textbf{Future directions}
 
 \end{frame}
 
@@ -92,15 +81,12 @@
         \item No single research goal
         \item Variety of topics and modules
       \end{itemize}
-      % \alert{Belief system} construction
-      % \alert{Influential beliefs?}
-
     \end{column}
     \hfill
     \begin{column}{.28\textwidth}
       \includegraphics[width=2.5cm]{ess.png} \\
-      %\includegraphics[width=2.5cm]{bsa.jpg} \\
-      %\includegraphics[width=2.9cm]{albus.jpeg} \\
+      \includegraphics[width=2.5cm]{bsa.jpg} \\
+      \includegraphics[width=2.9cm]{albus.jpeg} \\
       \includegraphics[width=2.5cm]{gss.jpg}
     \end{column}
   \end{columns}
@@ -146,10 +132,6 @@
         \item 30 European countries
         \item \alert{Attitude towards national government}
       \end{itemize}
-
-      % \alert{Belief system} construction
-      % \alert{Influential beliefs?}
-
     \end{column}
     \hfill
     \begin{column}{.43\textwidth}
@@ -160,7 +142,7 @@
 \end{frame}
 
 \begin{frame}{Motivating example}
-  \begin{columns}[T] % align columns
+  \begin{columns}[T] 
     \begin{column}{.48\textwidth}
 
       \begin{block}{Govermental Performance}
@@ -180,8 +162,8 @@
         \alert{Political parties}
       \end{block}
 
-    \end{column}%
-    \hfill%
+    \end{column}
+    \hfill
     \begin{column}{.48\textwidth}
       \begin{block}{Representation \& Fairness}
         Systems allows people to have \alert{a say} \\
@@ -190,10 +172,9 @@
         Gov. takes into account \alert{interests of all}  \\
         System gives a \alert{fair chance} to all
       \end{block}
-    \end{column}%
+    \end{column}
   \end{columns}
 \end{frame}
-% \section{Belief network analysis}
 
 \begin{frame}{Analytical strategy}
 
@@ -212,7 +193,7 @@
 \end{frame}
 
 \begin{frame}{UVA - Redundancy analysis}
-  \begin{columns}[T] % align columns
+  \begin{columns}[T] 
     \begin{column}{.48\textwidth}
 
       \begin{block}{Govermental Performance}
@@ -232,8 +213,8 @@
         \sout{\alert{Political parties}}
       \end{block}
 
-    \end{column}%
-    \hfill%
+    \end{column}
+    \hfill
     \begin{column}{.48\textwidth}
       \begin{block}{Representation \& Fairness}
         Systems allows people to have \alert{a say} \\
@@ -242,7 +223,7 @@
         Gov. takes into account \alert{interests of all}  \\
         \sout{System gives a \alert{fair chance} to all}
       \end{block}
-    \end{column}%
+    \end{column}
   \end{columns}
 \end{frame}
 
@@ -266,9 +247,7 @@
   $$
     \mathrm{IVI}_i = (\mathrm{Hub}_i)(\mathrm{Spread}_i)
   $$
-  % $$
-  % \mathrm{IVI}_{i}=\left(\text { Hubness }_{\text {score }_{i}}\right)\left(\text { Spreading }_{\text {score }_{i}}\right)
-  % $$
+
   \pause
   $$
     \mathrm{Hub}_i=\mathrm{DC}_{i}^{\prime}+\mathrm{LH}_{\mathrm {index }_{i}}^{\prime}
@@ -281,12 +260,6 @@
   \pause
 
 \end{frame}
-
-
-
-
-
-
 
 {\setbeamercolor{background canvas}{bg=white} \begin{frame}
   \begin{figure}
@@ -335,26 +308,26 @@
 
   \end{figure}
 \end{frame}
-% \setbeamercolor{background canvas}{bg=white}
-% \begin{frame}
-% 
-%   \begin{columns}[T]
-%     \column{0.5\textwidth}
-%     \begin{minipage}[c][0.49\textheight][c]{\linewidth}
-%       \centering
-%       \includegraphics[width=0.75\linewidth]{05-scatter-ED.png}
-%     \end{minipage}
-%     \begin{minipage}[c][0.49\textheight][c]{\linewidth}
-%       \centering
-%       \includegraphics[width=0.75\linewidth]{05-scatter-health.png}
-%     \end{minipage}
-%     \column{0.5\textwidth}
-%     \begin{minipage}[c][0.45\textheight][c]{\linewidth}
-%       \centering
-%       \includegraphics[width=0.75\linewidth]{05-scatter-RoL.png}
-%     \end{minipage}
-%   \end{columns}
-% \end{frame}
+\setbeamercolor{background canvas}{bg=white}
+\begin{frame}
+
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \begin{minipage}[c][0.49\textheight][c]{\linewidth}
+      \centering
+      \includegraphics[width=0.75\linewidth]{05-scatter-ED.png}
+    \end{minipage}
+    \begin{minipage}[c][0.49\textheight][c]{\linewidth}
+      \centering
+      \includegraphics[width=0.75\linewidth]{05-scatter-health.png}
+    \end{minipage}
+    \column{0.5\textwidth}
+    \begin{minipage}[c][0.45\textheight][c]{\linewidth}
+      \centering
+      \includegraphics[width=0.75\linewidth]{05-scatter-RoL.png}
+    \end{minipage}
+  \end{columns}
+\end{frame}
 
 \begin{frame}{Summary}
 
@@ -367,15 +340,15 @@
 \end{frame}
 
 
-% \begin{frame}{Future Directions}
-% 
-%   \begin{itemize}
-%     \item Differences between ruling and opposition parties voters
-%     \item Pairwise Ising model (binary beliefs)
-%     \item Compare with other influence/centrality metrics
-%     \item Investigate dynamics in panel surveys
-%   \end{itemize}
-% \end{frame}
+\begin{frame}{Future Directions}
+
+  \begin{itemize}
+    \item Differences between ruling and opposition parties voters
+    \item Pairwise Ising model (binary beliefs)
+    \item Compare with other influence/centrality metrics
+    \item Investigate dynamics in panel surveys
+  \end{itemize}
+\end{frame}
 
 \begin{frame}
 

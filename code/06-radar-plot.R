@@ -1,3 +1,13 @@
+# Filename: 05-radar-plot.R
+# This script:
+#   - Creates radar plots showing IVI profile for 3 countries
+#   - Creates radar plots showing IVI profile for 3 social classes
+# Output:
+#   - 'figures/03-radar-ger-*.png` three figures subsequently showing
+#     radar plots for Germany, Hungary and Serbia
+#   - 'figures/03-radar-class-*.png` three figures subsequently showing
+#     radar plots for three social classes
+
 library(fmsb)
 
 
@@ -8,16 +18,16 @@ colors_in = c(rgb(0.2, 0.5, 0.5, 0.4),
               rgb(0.8, 0.2, 0.5, 0.4) ,
               rgb(0.7, 0.5, 0.1, 0.4))
 
-country_data <- as.data.frame(read_csv('output/country-data.csv'))
+country_data <- as.data.frame(read_csv('csv/country-data.csv'))
 
 
-## GERMANY ONLY
+## START WITH GERMANY
 
 countries <- c('Germany')
 
 sel_country <-
   country_data %>% filter(country_data$Country %in% countries)
-rownames(sel_country) <- c('','',countries)
+rownames(sel_country) <- c('', '', countries)
 
 sel_country <-
   sel_country %>% select(
@@ -33,7 +43,7 @@ sel_country <-
   )
 
 data <- rbind(rep(100, 7) , rep(0, 7) , sel_country)
-rownames(data) <- c('max','min',countries)
+rownames(data) <- c('max', 'min', countries)
 
 png(
   filename = 'figures/03-radar-ger.png',
@@ -55,16 +65,27 @@ radarchart(
   vlcex = 0.75
 )
 
-legend(x=1, y=0.6, legend = rownames(data[-c(1,2),]), bty = "n", pch=20 , col=colors_in , text.col = "black", cex=0.8, pt.cex=1)
+legend(
+  x = 1,
+  y = 0.6,
+  legend = rownames(data[-c(1, 2), ]),
+  bty = "n",
+  pch = 20 ,
+  col = colors_in ,
+  text.col = "black",
+  cex = 0.8,
+  pt.cex = 1
+)
 dev.off()
-## TWO COUNTRIES
+
+## GERMANY + HUNGARY
 
 countries <- c('Germany', 'Hungary')
 
 
 sel_country <-
   country_data %>% filter(country_data$Country %in% countries)
-rownames(sel_country) <- c('','',countries)
+rownames(sel_country) <- c('', '', countries)
 
 sel_country <-
   sel_country %>% select(
@@ -80,7 +101,7 @@ sel_country <-
   )
 
 data <- rbind(rep(100, 7) , rep(0, 7) , sel_country)
-rownames(data) <- c('max','min',countries)
+rownames(data) <- c('max', 'min', countries)
 
 png(
   filename = 'figures/03-radar-ger-hu.png',
@@ -102,20 +123,26 @@ radarchart(
   vlcex = 0.75
 )
 
-legend(x=1, y=0.6, legend = c('Germany','Hungrary'), bty = "n", pch=20 , col=colors_in , text.col = "black", cex=0.8, pt.cex=1)
+legend(
+  x = 1,
+  y = 0.6,
+  legend = c('Germany', 'Hungrary'),
+  bty = "n",
+  pch = 20 ,
+  col = colors_in ,
+  text.col = "black",
+  cex = 0.8,
+  pt.cex = 1
+)
 dev.off()
 
-
-
-
-###
-
+### GERMANY, HUNGARY, SERBIA
 
 countries <- c('Germany', 'Hungary', 'Serbia')
 
 sel_country <-
   country_data %>% filter(country_data$Country %in% countries)
-rownames(sel_country) <- c('','',countries)
+rownames(sel_country) <- c('', '', countries)
 
 sel_country <-
   sel_country %>% select(
@@ -131,7 +158,7 @@ sel_country <-
   )
 
 data <- rbind(rep(100, 7) , rep(0, 7) , sel_country)
-rownames(data) <- c('max','min',countries)
+rownames(data) <- c('max', 'min', countries)
 
 png(
   filename = 'figures/03-radar-hu-rs.png',
@@ -153,24 +180,35 @@ radarchart(
   vlcex = 0.75
 )
 
-legend(x=1, y=0.6, legend = c('Germany','Hungrary','Serbia'), bty = "n", pch=20 , col=colors_in , text.col = "black", cex=0.8, pt.cex=1)
+legend(
+  x = 1,
+  y = 0.6,
+  legend = c('Germany', 'Hungrary', 'Serbia'),
+  bty = "n",
+  pch = 20 ,
+  col = colors_in ,
+  text.col = "black",
+  cex = 0.8,
+  pt.cex = 1
+)
 dev.off()
 
 
-## RADAR PLOT FOR ROW
+## SOCIAL CLASS
 
 class_data <- as.data.frame(read_csv('output/ivi-class.csv'))
 rownames(class_data) <- rownames(ivi_class)
 
 
-# FIRST CLASS
+# CLASS 1
+
 c = c('Self-employed professionals and large employers')
 
 sel_class <-
   class_data %>% filter(row.names(class_data) %in% c)
 
 data <- rbind(rep(100, 7) , rep(0, 7) , sel_class)
-rownames(data) <- c('max','min',c)
+rownames(data) <- c('max', 'min', c)
 
 png(
   filename = 'figures/04-radar-class-1.png',
@@ -192,18 +230,29 @@ radarchart(
   vlcex = 0.75
 )
 
-legend(x=0.92, y=0.6, legend = c('Large employers'), bty = "n", pch=20 , col=colors_in , text.col = "black", cex=0.6, pt.cex=1)
+legend(
+  x = 0.92,
+  y = 0.6,
+  legend = c('Large employers'),
+  bty = "n",
+  pch = 20 ,
+  col = colors_in ,
+  text.col = "black",
+  cex = 0.6,
+  pt.cex = 1
+)
 dev.off()
 
-# SECOND CLASS
+# CLASS 1 AND 2
 
-c = c('Self-employed professionals and large employers','Production workers')
+c = c('Self-employed professionals and large employers',
+      'Production workers')
 
 sel_class <-
   class_data %>% filter(row.names(class_data) %in% c)
 
 data <- rbind(rep(100, 7) , rep(0, 7) , sel_class)
-rownames(data) <- c('max','min',c)
+rownames(data) <- c('max', 'min', c)
 
 png(
   filename = 'figures/04-radar-class-2.png',
@@ -225,19 +274,31 @@ radarchart(
   vlcex = 0.75
 )
 
-legend(x=0.92, y=0.6, legend = c('Large employers','Prod. workers'), bty = "n", pch=20 , col=colors_in , text.col = "black", cex=0.6, pt.cex=1)
+legend(
+  x = 0.92,
+  y = 0.6,
+  legend = c('Large employers', 'Prod. workers'),
+  bty = "n",
+  pch = 20 ,
+  col = colors_in ,
+  text.col = "black",
+  cex = 0.6,
+  pt.cex = 1
+)
 dev.off()
 
 
-# THIRD
+# CLASS 1,2 AND 3
 
-c = c('Self-employed professionals and large employers','Production workers','Clerks')
+c = c('Self-employed professionals and large employers',
+      'Production workers',
+      'Clerks')
 
 sel_class <-
   class_data %>% filter(row.names(class_data) %in% c)
 
 data <- rbind(rep(100, 7) , rep(0, 7) , sel_class)
-rownames(data) <- c('max','min',c)
+rownames(data) <- c('max', 'min', c)
 
 png(
   filename = 'figures/04-radar-class-3.png',
@@ -259,5 +320,15 @@ radarchart(
   vlcex = 0.75
 )
 
-legend(x=0.92, y=0.6, legend = c('Large employers','Prod. workers','Clerks'), bty = "n", pch=20 , col=colors_in , text.col = "black", cex=0.6, pt.cex=1)
+legend(
+  x = 0.92,
+  y = 0.6,
+  legend = c('Large employers', 'Prod. workers', 'Clerks'),
+  bty = "n",
+  pch = 20 ,
+  col = colors_in ,
+  text.col = "black",
+  cex = 0.6,
+  pt.cex = 1
+)
 dev.off()

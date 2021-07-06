@@ -4,5 +4,6 @@
 
 setwd("~/Documents/work/essnet")
 library(essurvey)
+library(foreign)
 set_email('atomashevic@ff.uns.ac.rs')
 data <- import_rounds(c(9),format='spss')

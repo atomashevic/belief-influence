@@ -1,4 +1,4 @@
-# Filename: 05-IVI-plots.R
+# Filename: 05-IVI-plot.R
 # This script:
 #   - Calculates IVI on complete sample and plots IVI network
 #   - Calculates IVI on country subsamples and writes res to CSV
