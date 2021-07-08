@@ -7,8 +7,6 @@
 # Output:
 #   - 'figures/02-ivi-full.png' Network plot with node size and color scaled
 #     by their IVI
-#   - 'figures/99-tree-ea-vs-ld.png' Result of compare function for networks
-#     estimated on EA and LD subsamples
 #   - 'csv/ivi-country.csv IVI per node per country subsample
 #   - 'csv/country-data.csv' Combine country level IVI with external data
 #     on country level (political and economic indices)
@@ -123,7 +121,6 @@ write_csv(ivi_cntry, file = 'csv/ivi-country.csv')
 country_data <- cbind(ext, ivi_cntry)
 write_csv(country_data, file = 'csv/country-data.csv')
 
-
 library(ggplot2)
 
 pdata <- cbind(countries[, 1], ivi_cntry)
@@ -148,8 +145,7 @@ pdata %>% ggplot(aes(
 ) +
   coord_flip() +
   xlab("") +
-  ylab("IVI of Satisfaction with Economy")
-theme_bw()
+  ylab("IVI of Satisfaction with Economy")+ theme_bw()
 
 dev.off()
 
@@ -172,7 +168,10 @@ pdata %>% ggplot(aes(
 ) +
   coord_flip() +
   xlab("") +
-  ylab("IVI of Satifaction with the Democracy")
-theme_bw()
+  ylab("IVI of Satifaction with the Democracy") + theme_bw()
 dev.off()
 
+## IVI BY CLASS
+classes <- as.matrix(levels(data$Class5))
+ivi_class<- ivi_group_discrete(data, netvars, 'Class5', classes)
+write_csv(ivi_class, file = 'csv/ivi-class.csv')

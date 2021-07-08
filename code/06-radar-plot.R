@@ -27,7 +27,7 @@ countries <- c('Germany')
 
 sel_country <-
   country_data %>% filter(country_data$Country %in% countries)
-rownames(sel_country) <- c('', '', countries)
+rownames(sel_country) <- (countries)
 
 sel_country <-
   sel_country %>% select(
@@ -85,7 +85,7 @@ countries <- c('Germany', 'Hungary')
 
 sel_country <-
   country_data %>% filter(country_data$Country %in% countries)
-rownames(sel_country) <- c('', '', countries)
+rownames(sel_country) <- c(countries)
 
 sel_country <-
   sel_country %>% select(
@@ -142,7 +142,7 @@ countries <- c('Germany', 'Hungary', 'Serbia')
 
 sel_country <-
   country_data %>% filter(country_data$Country %in% countries)
-rownames(sel_country) <- c('', '', countries)
+rownames(sel_country) <- c(countries)
 
 sel_country <-
   sel_country %>% select(
@@ -196,13 +196,13 @@ dev.off()
 
 ## SOCIAL CLASS
 
-class_data <- as.data.frame(read_csv('output/ivi-class.csv'))
+class_data <- as.data.frame(read_csv('csv/ivi-class.csv'))
 rownames(class_data) <- rownames(ivi_class)
 
 
 # CLASS 1
 
-c = c('Self-employed professionals and large employers')
+c = c('Higher-grade service class')
 
 sel_class <-
   class_data %>% filter(row.names(class_data) %in% c)
@@ -233,8 +233,7 @@ radarchart(
 legend(
   x = 0.92,
   y = 0.6,
-  legend = c('Large employers'),
-  bty = "n",
+  legend = c('Higher-grade service class'),
   pch = 20 ,
   col = colors_in ,
   text.col = "black",
@@ -246,7 +245,7 @@ dev.off()
 # CLASS 1 AND 2
 
 c = c('Self-employed professionals and large employers',
-      'Production workers')
+      'Small business owners')
 
 sel_class <-
   class_data %>% filter(row.names(class_data) %in% c)
@@ -277,7 +276,8 @@ radarchart(
 legend(
   x = 0.92,
   y = 0.6,
-  legend = c('Large employers', 'Prod. workers'),
+  legend = c('Large employers', 'Small business owners
+'),
   bty = "n",
   pch = 20 ,
   col = colors_in ,
@@ -292,7 +292,7 @@ dev.off()
 
 c = c('Self-employed professionals and large employers',
       'Production workers',
-      'Clerks')
+      'Unskilled workers')
 
 sel_class <-
   class_data %>% filter(row.names(class_data) %in% c)
@@ -323,7 +323,8 @@ radarchart(
 legend(
   x = 0.92,
   y = 0.6,
-  legend = c('Large employers', 'Prod. workers', 'Clerks'),
+  legend = c('Large employers', 'Prod. workers', 'Unskilled workers
+'),
   bty = "n",
   pch = 20 ,
   col = colors_in ,

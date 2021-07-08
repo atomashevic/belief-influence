@@ -13,7 +13,7 @@
 
 library(ggplot2)
 
-country_data <- as.data.frame(read_csv('output/country-data.csv'))
+country_data <- as.data.frame(read_csv('csv/country-data.csv'))
 
 ## FIRST ONE
 
