@@ -6,7 +6,7 @@ packages <-
     'qgraph',
     'dplyr',
     'tidyverse',
-    'questionr',
+    'questionr',g
     'labelled',
     'networktree',
     'igraph',
@@ -23,6 +23,12 @@ if (length(new.packages))
   print(sprintf("Installing: %s", paste0(new.packages)))
   install.packages(new.packages)
 }
+
+if (!('EGAnet') %in% installed.packages()[, "Package"])
+{
+  devtools::install_github('EGAnet')
+}
+
 dir.create('figures', showWarnings = FALSE)
 
 source('code/00-download-data.R')
