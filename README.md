@@ -8,13 +8,13 @@ Repository containing data, code and results of the analysis for the paper **Det
 -   `code/` `R` scripts for each segment of the analysis and the main script
 -   `figures/` and `csv` store the latest versions of all figures and results
 -   Preprint *coming soon*
-
+  
 ## Main R script
 
 You can run clone the repository and run (from CLI or RStudio):
 
 ```bash
-Rscript code/analysis
+Rscript code/analysis.R
 ```
 
 And the script will do the entire analysis: install packages (but won't update existing versions), download ESS data and produce the output in `csv` and `figures` directories.
