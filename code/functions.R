@@ -37,23 +37,10 @@ clean_data <- function(dirty_data, variables_of_interest,
     }
 }
 
-add_new_variables <- function(old_data, csv_location) {
+add_new_variables <- function(old_data) {
   if (!file.exists("data/data_complete.Rds")) {
     d <- add_lr_scale(old_data,3)
     d <- add_lr_scale(d,5)
-    external_data <- read.csv(csv_location)
-    n <- nrow(d)
-    d <- d |>
-      add_column(Geff = NA, Rol = NA, Vaa = NA, Pstab = NA, ROW = NA)
-    for (i in 1:n) {
-      c <- d$Country[i]
-      j <- which(external_data$Country == c)
-      d$Geff[i] <- external_data$GEff[j]
-      d$Rol[i] <- external_data$RoL[j]
-      d$Vaa[i] <- external_data$VaA[j]
-      d$Pstab[i] <- external_data$Pstab[j]
-      d$ROW[i] <- external_data$ROW[j]
-    }
     saveRDS(d, "data/data_complete.Rds")
     return(d)
   } else {
@@ -104,6 +91,14 @@ lr_transform_5 <- function(lrscale_value) {
   } else return(NA)  
 }
 
+rescale_data <- function(x) {
+  return(x |> mutate(across(network_variables,transform_range_1)))
+}
+
+
+transform_range_1 <- function(x){
+  return(2*((x - min(x, na.rm = TRUE)) / (max(x, na.rm = TRUE) - min(x, na.rm = TRUE))) - 1)
+}
 
 remove_redundant_variables <- function(network_data) {
   if (!file.exists("data/variables_after_UVA.Rds")) {
@@ -209,6 +204,9 @@ ivi_group_discrete <- function(network_data, group_variable)
   return(result_matrix)
 }
 
+energy_total <- function(network_group_data,matrix) {
+  
+}
 
 get_ivi <- function(network_data) {
   library(influential)
@@ -323,4 +321,151 @@ factors_numeric <- function(d) {
     d[, sapply(d, is.factor)],
     as_numeric
   ))
+}
+
+
+get_country_results <- function(data,network_variables,country,type) {
+  library(psychonetrics)
+  library(influential)
+  library(igraph)
+  library(psych)
+  source("code/k-shell-influence.R")
+  model_data <- data %>% select(c(network_variables,Country))
+  model_data <- rescale_data(model_data)
+  model_data <- model_data |> filter(!is.na(model_data$Country)) |> filter(Country == country)
+  model_data <- model_data |> select(-Country)
+  model_1 <- ggm(model_data ,omega = "empty")
+  model_1 <- model_1 %>% runmodel
+  model_1b <- model_1  %>%  stepup(
+    criterion = "bic",
+    alpha = 0.00001,
+    greedy = FALSE,
+    greedyadjust = "fdr"
+  )
+  
+  delta_matrix <-  getmatrix(model_1b, "delta")
+  deltas <- sum(diag(delta_matrix)) / nrow(delta_matrix)
+  SEs <- model_1b@parameters$se[model_1b@parameters$matrix == "delta"]
+  se = mean(SEs)
+  df <- data.frame(
+    temperature = deltas,
+    lower = (deltas-qnorm(0.975) * se),
+    upper = (deltas+qnorm(0.975) * se),
+    stringsAsFactors = FALSE
+  )
+  
+  matrix <- getmatrix(model_1b,matrix = "omega")
+  graph <-  graph_from_adjacency_matrix(matrix,
+                                        weighted = TRUE,
+                                        mode = "undirected")
+  V(graph)$label <- as.character(1:7)
+  d <- as.data.frame(get_influence(graph))
+  if (type=="inf"){
+    return(d)
+  } else {
+  gic_mean = mean(unlist(d[1,1:7]))
+  gi_mean = mean(unlist(d[3,1:7]))
+  gsm_mean = mean(unlist(d[4,1:7]))
+  gic_sd = sd(unlist(d[1,1:7]))
+  gi_sd = sd(unlist(d[3,1:7]))
+  gsm_sd = sd(unlist(d[4,1:7]))
+  gic_k= kurtosi(unlist(d[1,1:7]))
+  gi_k = kurtosi(unlist(d[3,1:7]))
+  gsm_k = kurtosi(unlist(d[4,1:7]))
+  res = matrix(0,7,7)
+  model_data <- model_data |> drop_na()
+  n = nrow(model_data)
+  for (i in 1:n) {
+    for (j in 1:6) {
+      for (k in (j + 1):7) {
+        res[j,k] = res[j,k] + matrix[j,k]*as.numeric(model_data[i,j])*as.numeric(model_data[i,k])
+      }
+    }
+  }
+  energy <- -sum(res[upper.tri(res)]/n)
+  summary <- cbind(df[,1],gic_mean,gi_mean, gsm_mean,gic_sd,
+                   gi_sd, gsm_sd, gic_k, gi_k, gsm_k,energy)
+  colnames(summary) <-
+    c(
+      "Temperature",
+      "GIC Mean",
+      "GIC SD",
+      "GIC Kurtosis",
+      "GI Mean",
+      "GI SD",
+      "GI Kurtosis",
+      "GSM Mean ",
+      "GSM SD",
+      "GSM Kurtosis",
+      "Avg. Energy"
+    )  
+    return(summary)
+  }
+}
+
+k.shell   <- function(graph, start.level = 0, verbose = FALSE){
+  library(igraph)
+  # E(graph)$weight <- 1/E(graph)$weight
+  # E(graph)$weight <- E(graph)$weight / mean(E(graph)$weight)
+  # norm            <- E(graph)$weight / min(E(graph)$weight)
+  # rnorm           <- round(norm, digits = 0)
+  # E(graph)$weight <- rnorm
+  
+  rnormalize      <- function(x){
+    x               <- 1/x
+    x               <- x/mean(x)
+    x               <- x/min(x)
+    x               <- round(x, digits = 0)
+    x
+  }
+  
+  E(graph)$weight <- rnormalize(E(graph)$weight)
+  
+  adj             <- get.adjacency(graph, attr = "weight", sparse = TRUE)
+  
+  level.down     <- function(x, level){
+    g            <- x
+    #gs           <- graph.strength(g)
+    gs           <- Matrix::rowSums(g)
+    
+    while (any(gs <= level) & length(gs) > level) {
+      delete      <- which(gs <= level)
+      g            <- g[-delete, -delete]
+      gs           <- Matrix::rowSums(g)  
+    }
+    setdiff(rownames(x), rownames(g))
+  }
+  
+  g               <- adj
+  k.score         <- 0
+  k.vector        <- rep(Inf, vcount(graph)) 
+  gs              <- Matrix::rowSums(adj)
+  
+  if (start.level < min(gs)) start.level <- min(gs)
+  
+  minimum.degree  <- start.level
+  
+  
+  while (k.score <= minimum.degree & nrow(g) != 0) {
+    candidate.names <- level.down(g, level = minimum.degree)
+    candidates      <- which(V(graph)$name %in% candidate.names)
+    
+    k.score         <- k.score + 1
+    delete          <- which(rownames(g) %in% candidate.names)
+    g               <- g[-delete, -delete]
+    
+    if (nrow(g) == 0) break
+    gs              <- Matrix::rowSums(g)
+    
+    if (minimum.degree >= min(gs)) break
+    
+    minimum.degree  <- min(gs)
+    
+    k.vector[candidates] <- k.score
+    if (identical(verbose, TRUE)) cat("Minimum degree: ", minimum.degree, "Removed: ", length(candidate.names), "Remain: ", nrow(g), "\n")
+  }
+  
+  k.vector[is.infinite(k.vector)] <- k.score 
+  
+  k.vector + start.level
 }
