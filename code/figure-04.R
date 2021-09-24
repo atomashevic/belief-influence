@@ -1,5 +1,7 @@
 library(ggplot2)
 library(patchwork)
+library(readr)
+
 
 country_data <- readRDS('data/country-gics.Rds')
 country_data <- country_data[order(country_data$Country),]
@@ -10,7 +12,10 @@ external_data <- external_data[order(external_data$Country),]
 
 df <- cbind(country_data,external_data[,-1])
 
-# cor.test(df$Economy,df$GDP) #-0.357 p=0.05
+#cor.test(df$Economy,df$GDP) #-0.352 p=0.06
+#cor.test(df$Economy,df$GDP_L5) # -0.397 p=0.03
+#cor.test(df$Economy,df$GDP_L10) #-0.447 p=0.015
+
 # cor.test(df$GEff,df$Economy) #0.53 p=0.003
 
 # cor.test(df$Democracy,df$LD) #-0.52 p=0.003
