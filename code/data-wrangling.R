@@ -89,6 +89,8 @@ levels(data$nwspol) <- c("0-30","30-60","60-90","90+")
 
 network_data <- data %>% select(network_variables)
 
+library(EGAnet)
+
 network_variables <- remove_redundant_variables(network_data)
 
 network_data <- data %>% select(network_variables)
