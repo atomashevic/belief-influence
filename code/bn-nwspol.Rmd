@@ -39,10 +39,10 @@ Models:
 2.  Sparse model, all parameters free `model_1b`
 3.  Empty model, equal networks `model_2`
 4.  Sparse model, equal networks `model_2b`
-5.  Empty model, equal mean structure`model_3`
-6.  Sparse model, equal mean structure `model_3b`
-7.  Empty model, equal temperature `model_4`
-8.  Sparse model, equal temperature `model_4b`
+5.  Empty model, equal temperature `model_3`
+6.  Sparse model, equal temperature `model_3b`
+7.  Empty model, equal networks and temperature `model_4`
+8.  Sparse model, equal networks and temperature `model_4b`
 
 ```{r cache=TRUE}
 model_1 <- ggm(model_data ,omega = "empty",group = "nwspol")
@@ -66,7 +66,7 @@ model_2b <- model_2 %>%  stepup(
     greedyadjust = "fdr"
 )
 
-model_3 <- model_1 %>% groupequal("mu") %>% runmodel
+model_3 <- model_1 %>% groupequal("delta") %>% runmodel
 
 model_3b <- model_3 %>%  stepup(
     criterion = "bic",
@@ -76,7 +76,7 @@ model_3b <- model_3 %>%  stepup(
     greedyadjust = "fdr"
 )
 
-model_4 <- model_1 %>% groupequal("delta") %>% runmodel
+model_4 <- model_2 %>% groupequal("delta") %>% runmodel
 
 model_4b <- model_4 %>%  stepup(
     criterion = "bic",
@@ -94,10 +94,10 @@ comparison <- compare(
     `2. all parameters free (sparse)` = model_1b,
     `3. equal networks (empty)` = model_2,
     `4. equal networks (sparse)` = model_2b,
-    `5. equal means (empty)` = model_3,
-    `6. equal means (sparse)` = model_3b,
-    `7. equal temperature (empty)` = model_4,
-    `8. equal temperature (sparse)` = model_4b) %>% arrange(BIC) 
+    `5. equal temperature (empty)` = model_3,
+    `6. equal temperature (sparse)` = model_3b,
+    `7. equal networks & temperature (empty)` = model_4,
+    `8. equal networks & temperature (sparse)` = model_4b) %>% arrange(BIC) 
 
 comparison <- as.data.frame(comparison)
 
