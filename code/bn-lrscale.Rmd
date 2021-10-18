@@ -1,0 +1,475 @@
+---
+title: "Belief Networks grouped by ideology (5-scale)"
+output:
+  html_document:
+    df_print: paged
+---
+
+# Preliminaries
+
+```{r}
+library(here)
+knitr::opts_knit$set(root.dir = here())
+knitr::opts_chunk$set(dev = "png", fig.align = "center",
+                      fig.width = 12, fig.height = 8, fig.path = "../figures/",
+                      echo = FALSE, warning = FALSE, message = FALSE, error = FALSE)
+```
+
+
+```{r}
+setwd(here())
+source("code/data-wrangling.R")
+```
+
+```{r}
+library(psychonetrics)
+```
+
+```{r}
+model_data <- data %>% select(c(network_variables,lr5))
+model_data <- rescale_data(model_data)
+model_data <- model_data |> filter(!is.na(model_data$lr5))
+```
+
+## Specification of the models
+
+Models:
+
+1.  Empty model, all parameters free `model_1`
+2.  Sparse model, all parameters free `model_1b`
+3.  Empty model, equal networks `model_2`
+4.  Sparse model, equal networks `model_2b`
+5.  Empty model, equal temperature `model_3`
+6.  Sparse model, equal temperature `model_3b`
+7.  Empty model, equal networks and temperature `model_4`
+8.  Sparse model, equal networks and temperature `model_4b`
+
+```{r cache=TRUE}
+model_1 <- ggm(model_data ,omega = "empty",group = "lr5")
+
+model_1 <- model_1 %>% runmodel
+
+model_1b <- model_1  %>%  stepup(
+        criterion = "bic",
+        alpha = 0.00001,
+        greedy = FALSE,
+        greedyadjust = "fdr"
+    )
+
+model_2 <- model_1 %>% groupequal("omega") %>% runmodel
+
+model_2b <- model_2 %>%  stepup(
+    criterion = "bic",
+    mi = "mi_equal",
+    alpha = 0.00001,
+    greedy = FALSE,
+    greedyadjust = "fdr"
+)
+
+model_3 <- model_1 %>% groupequal("delta") %>% runmodel
+
+model_3b <- model_3 %>%  stepup(
+    criterion = "bic",
+    mi = "mi_equal",
+    alpha = 0.00001,
+    greedy = FALSE,
+    greedyadjust = "fdr"
+)
+
+model_4 <- model_2 %>% groupequal("delta") %>% runmodel
+
+model_4b <- model_4 %>%  stepup(
+    criterion = "bic",
+    mi = "mi_equal",
+    alpha = 0.00001,
+    greedy = FALSE,
+    greedyadjust = "fdr"
+)
+
+```
+
+```{r}
+comparison <- compare(
+    `1. all parameters free (empty)` = model_1,
+    `2. all parameters free (sparse)` = model_1b,
+    `3. equal networks (empty)` = model_2,
+    `4. equal networks (sparse)` = model_2b,
+    `5. equal temperature (empty)` = model_3,
+    `6. equal temperature (sparse)` = model_3b,
+    `7. equal networks & temperature (empty)` = model_4,
+    `8. equal networks & temperature (sparse)` = model_4b) %>% arrange(BIC) 
+
+comparison <- as.data.frame(comparison)
+
+rownames(comparison) <- NULL
+
+comparison |> select(model,BIC)
+```
+```{r}
+setwd(here())
+saveRDS(getmatrix(model_1b, "omega"),file='data/lr_matrices.Rds')
+```
+
+
+## Model temperature
+
+```{r}
+delta_matrix <-  getmatrix(model_1b, "delta")
+deltas <-
+    c(
+        sum(diag(delta_matrix$FL)) / nrow(delta_matrix$FL),
+        sum(diag(delta_matrix$L)) / nrow(delta_matrix$L),
+        sum(diag(delta_matrix$C)) / nrow(delta_matrix$C),
+        sum(diag(delta_matrix$R)) / nrow(delta_matrix$R),
+        sum(diag(delta_matrix$FR)) / nrow(delta_matrix$FR)
+        
+    )
+SEs <- model_1b@parameters$se[model_1b@parameters$matrix == "delta"]
+
+se <- c(mean(SEs[1:7]),mean(SEs[8:14]),mean(SEs[15:21]),mean(SEs[22:28]),mean(SEs[29:35]))
+
+df <- data.frame(
+    temperature = deltas,
+    group = c("Far Left","Left","Center","Right","Far Right"),
+    lower = (deltas-qnorm(0.975) * se),
+    upper = (deltas+qnorm(0.975) * se),
+    stringsAsFactors = FALSE
+)
+```
+
+```{r lr5-model1b-temperature}
+df$fixed <- is.na(df$lower)
+df$group <- factor(df$group, levels = c("Far Left","Left","Center","Right","Far Right"))
+
+g <- ggplot(df,aes(x=as.numeric(group), y = temperature, ymin = lower, ymax = upper)) +
+    geom_line() +
+    geom_errorbar(width = 0.05) +
+    geom_point(cex = 3, colour = "black") +
+    geom_point(aes(colour = fixed), cex = 3) +  theme_bw()  +
+    xlab("") + ylab(expression(paste("Temperature"))) +
+    scale_x_continuous(breaks =  1:5, labels = levels(df$group), expand = c(0.1,0.1)) +
+    scale_y_continuous( limits = c(0.3,0.45)) +
+    theme( panel.grid.major.x = element_blank(),panel.grid.minor.x = element_blank())+
+    ggtitle(expression(paste("Model 2: 3 groups; ",bold(Omega)," sparse and free; ",bold(tau)," free; "))) +
+    scale_colour_manual(values = c("black","white")) +
+    theme(legend.position = "none")
+
+print(g)
+```
+
+
+```{r}
+df[,1:4]
+```
+
+## Influence
+
+```{r}
+setwd(here())
+source("code/k-shell-influence.R")
+library(psych)
+```
+
+```{r}
+columns = ncol(model_data) - 1
+
+factor_levels <- 5
+```
+
+```{r}
+fl_matrix <- getmatrix(model_1b,matrix = "omega",group="FL")
+graph <-  graph_from_adjacency_matrix(fl_matrix,
+                                    weighted = TRUE,
+                                    mode = "undirected")
+V(graph)$label <- as.character(1:7)
+  
+results <- get_influence(graph)
+results$group = "FL"
+```
+
+
+```{r}
+l_matrix <- getmatrix(model_1b,matrix = "omega",group="L")
+graph <-  graph_from_adjacency_matrix(l_matrix,
+                                    weighted = TRUE,
+                                    mode = "undirected")
+V(graph)$label <- as.character(1:7)
+  
+result <- get_influence(graph)
+result$group <- "L"
+results <- rbind(results,result)
+```
+
+```{r}
+c_matrix <- getmatrix(model_1b,matrix = "omega",group="C")
+graph <-  graph_from_adjacency_matrix(c_matrix,
+                                    weighted = TRUE,
+                                    mode = "undirected")
+V(graph)$label <- as.character(1:7)
+  
+result <- get_influence(graph)
+result$group <- "C"
+results <- rbind(results,result)
+
+```
+
+```{r}
+r_matrix <- getmatrix(model_1b,matrix = "omega",group = "R")
+graph <-  graph_from_adjacency_matrix(r_matrix,
+                                    weighted = TRUE,
+                                    mode = "undirected")
+V(graph)$label <- as.character(1:7)
+  
+result <- get_influence(graph)
+result$group <- "R"
+results <- rbind(results,result)
+
+```
+
+```{r}
+fr_matrix <- getmatrix(model_1b,matrix = "omega",group = "FR")
+graph <-  graph_from_adjacency_matrix(fr_matrix,
+                                    weighted = TRUE,
+                                    mode = "undirected")
+graph_vertices <- V(graph)
+  
+V(graph)$label <- as.character(1:7)
+  
+result <- get_influence(graph)
+result$group <- "FR"
+results <- rbind(results,result)
+
+```
+
+```{r}
+lr5_inf <- as.data.frame(results)
+lr5_inf
+```
+
+```{r}
+e = array()
+gic_means = e 
+gi_means = e
+gsm_means = e
+gic_sds = e
+gi_sds = e
+gsm_sds = e
+gic_k = e 
+gi_k = e
+gsm_k = e
+
+d <- lr5_inf |> filter(group == "FL")
+
+gic_means[1] = mean(unlist(d[1,1:7]))
+gi_means[1] = mean(unlist(d[3,1:7]))
+gsm_means[1] = mean(unlist(d[4,1:7]))
+gic_sds[1] = sd(unlist(d[1,1:7]))
+gi_sds[1] = sd(unlist(d[3,1:7]))
+gsm_sds[1] = sd(unlist(d[4,1:7]))
+gic_k[1] = kurtosi(unlist(d[1,1:7]))
+gi_k[1] = kurtosi(unlist(d[3,1:7]))
+gsm_k[1] = kurtosi(unlist(d[4,1:7]))
+```
+
+```{r}
+d <- lr5_inf |> filter(group == "L")
+
+gic_means[2] = mean(unlist(d[1,1:7]))
+gi_means[2] = mean(unlist(d[3,1:7]))
+gsm_means[2] = mean(unlist(d[4,1:7]))
+gic_sds[2] = sd(unlist(d[1,1:7]))
+gi_sds[2] = sd(unlist(d[3,1:7]))
+gsm_sds[2] = sd(unlist(d[4,1:7]))
+gic_k[2] = kurtosi(unlist(d[1,1:7]))
+gi_k[2] = kurtosi(unlist(d[3,1:7]))
+gsm_k[2] = kurtosi(unlist(d[4,1:7]))
+```
+
+```{r}
+d <- lr5_inf |> filter(group == "C")
+
+gic_means[3] = mean(unlist(d[1,1:7]))
+gi_means[3] = mean(unlist(d[3,1:7]))
+gsm_means[3] = mean(unlist(d[4,1:7]))
+gic_sds[3] = sd(unlist(d[1,1:7]))
+gi_sds[3] = sd(unlist(d[3,1:7]))
+gsm_sds[3] = sd(unlist(d[4,1:7]))
+gic_k[3] = kurtosi(unlist(d[1,1:7]))
+gi_k[3] = kurtosi(unlist(d[3,1:7]))
+gsm_k[3] = kurtosi(unlist(d[4,1:7]))
+```
+
+```{r}
+d <- lr5_inf |> filter(group == "R")
+
+gic_means[4] = mean(unlist(d[1,1:7]))
+gi_means[4] = mean(unlist(d[3,1:7]))
+gsm_means[4] = mean(unlist(d[4,1:7]))
+gic_sds[4] = sd(unlist(d[1,1:7]))
+gi_sds[4] = sd(unlist(d[3,1:7]))
+gsm_sds[4] = sd(unlist(d[4,1:7]))
+gic_k[4] = kurtosi(unlist(d[1,1:7]))
+gi_k[4] = kurtosi(unlist(d[3,1:7]))
+gsm_k[4] = kurtosi(unlist(d[4,1:7]))
+```
+
+```{r}
+d <- lr5_inf |> filter(group == "FR")
+
+gic_means[5] = mean(unlist(d[1,1:7]))
+gi_means[5] = mean(unlist(d[3,1:7]))
+gsm_means[5] = mean(unlist(d[4,1:7]))
+gic_sds[5] = sd(unlist(d[1,1:7]))
+gi_sds[5] = sd(unlist(d[3,1:7]))
+gsm_sds[5] = sd(unlist(d[4,1:7]))
+gic_k[5] = kurtosi(unlist(d[1,1:7]))
+gi_k[5] = kurtosi(unlist(d[3,1:7]))
+gsm_k[5] = kurtosi(unlist(d[4,1:7]))
+```
+
+
+```{r}
+lr5_summary <- cbind(df[,1],gic_means,gic_sds,gic_k,gi_means,gi_sds,gi_k,gsm_means,gsm_sds,gsm_k)
+colnames(lr5_summary) <- c("Temperature","GIC Mean","GIC SD","GIC Kurtosis","GI Mean","GI SD","GI Kurtosis", "GSM Mean ","GSM SD","GSM Kurtosis")
+rownames(lr5_summary) <- c("Far Left","Left","Center","Right","Far Right")
+lr5_summary <- round(lr5_summary,2)
+lr5_summary
+```
+
+## Energy
+
+```{r}
+group_data <- model_data |> filter(lr5 == "FL") |>  drop_na()
+n = nrow(group_data)
+res = matrix(0,7,7)
+```
+
+```{r cache=TRUE}
+for (i in 1:n) {
+  for (j in 1:6) {
+    for (k in (j + 1):7) {
+      res[j,k] = res[j,k] + fl_matrix[j,k]*as.numeric(group_data[i,j])*as.numeric(group_data[i,k])
+    }
+  }
+}
+```
+
+```{r}
+lr5_fl_e <- -sum(res[upper.tri(res)]/n)
+```
+
+
+```{r}
+group_data <- model_data |> filter(lr5 == "L") |>  drop_na()
+n = nrow(group_data)
+res = matrix(0,7,7)
+```
+
+```{r cache=TRUE}
+for (i in 1:n) {
+  for (j in 1:6) {
+    for (k in (j + 1):7) {
+      res[j,k] = res[j,k] + l_matrix[j,k]*as.numeric(group_data[i,j])*as.numeric(group_data[i,k])
+    }
+  }
+}
+```
+
+```{r}
+lr5_l_e <- -sum(res[upper.tri(res)]/n)
+```
+
+```{r}
+group_data <- model_data |> filter(lr5 == "C") |>  drop_na()
+n = nrow(group_data)
+res = matrix(0,7,7)
+```
+
+```{r cache=TRUE}
+for (i in 1:n) {
+  for (j in 1:6) {
+    for (k in (j + 1):7) {
+      res[j,k] = res[j,k] + c_matrix[j,k]*as.numeric(group_data[i,j])*as.numeric(group_data[i,k])
+    }
+  }
+}
+```
+
+```{r}
+lr5_c_e <- -sum(res[upper.tri(res)]/n)
+```
+
+```{r}
+group_data <- model_data |> filter(lr5 == "R") |>  drop_na()
+n = nrow(group_data)
+res = matrix(0,7,7)
+```
+
+```{r cache=TRUE}
+for (i in 1:n) {
+  for (j in 1:6) {
+    for (k in (j + 1):7) {
+      res[j,k] = res[j,k] + r_matrix[j,k]*as.numeric(group_data[i,j])*as.numeric(group_data[i,k])
+    }
+  }
+}
+```
+
+```{r}
+lr5_r_e <- -sum(res[upper.tri(res)]/n)
+```
+
+```{r}
+group_data <- model_data |> filter(lr5 == "FR") |>  drop_na()
+n = nrow(group_data)
+res = matrix(0,7,7)
+```
+
+```{r cache=TRUE}
+for (i in 1:n) {
+  for (j in 1:6) {
+    for (k in (j + 1):7) {
+      res[j,k] = res[j,k] + fr_matrix[j,k]*as.numeric(group_data[i,j])*as.numeric(group_data[i,k])
+    }
+  }
+}
+```
+
+```{r}
+lr5_fr_e <- -sum(res[upper.tri(res)]/n)
+```
+
+```{r}
+lr5_summary <- cbind(lr5_summary,c(lr5_fl_e,lr5_l_e,lr5_c_e,lr5_r_e,lr5_fr_e))
+colnames(lr5_summary) <- c("Temperature","GIC Mean","GIC SD","GIC Kurtosis","GI Mean","GI SD","GI Kurtosis", "GSM Mean ","GSM SD","GSM Kurtosis","Avg. Energy")
+```
+
+```{r}
+lr5_summary 
+```
+
+```{r}
+df$energy <- unlist(-lr5_summary["Average Energy"])
+```
+
+```{r lr5-model1b-temp-energy}
+g <- ggplot(df,aes(x=as.numeric(group))) +
+    geom_line(aes(y = temperature, colour = "#FC4E07")) +
+    geom_point(aes(y = temperature),cex = 3, colour = "black") +
+    geom_line(aes(y = energy,colour = "#00AFBB"), ) +
+    geom_point(aes(y = energy),cex = 3, colour = "black") + theme_bw()  +
+    xlab("") +
+    scale_x_continuous(breaks =  1:5, labels = levels(df$group), expand = c(0.1,0.1)) +
+    scale_y_continuous( limits = c(0.2,0.6)) +
+    theme( panel.grid.major.x = element_blank(),panel.grid.minor.x = element_blank())+
+    ggtitle(expression(paste("Model 2: 3 groups; ",bold(Omega)," sparse and free; ",bold(tau)," free; "))) +
+    theme(legend.position = "right") +
+     scale_color_identity(name = "",labels = c( " Negative of \n Avg. Energy"," Temperature"), guide= "legend")
+print(g)
+```
+
+```{r}
+setwd(here())
+saveRDS(lr5_summary,file = "data/lr5_summary.Rds")
+saveRDS(results,file="data/lr5_influence.Rds")
+```
