@@ -1,6 +1,6 @@
 # Measuring the influence of beliefs in belief networks
 
-*ArXiv*:
+*ArXiv*: [https://arxiv.org/abs/2110.09154](https://arxiv.org/abs/2110.09154)
 
 ## Abstract
 
