@@ -13,6 +13,7 @@
 *.knit.md
 # R Environment Variables
 .Renviron
+belief-influence.Rproj
 /.Rproj.user
 /.Rproj.user/
 essnet.Rproj
