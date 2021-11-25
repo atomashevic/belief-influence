@@ -10,7 +10,7 @@ install_dependencies <- function(dependencies_list) {
     }
     # EGAnet is an exception since it always has to be installed from GitHub
     if (!("EGAnet" %in% installed.packages()[, "Package"])) {
-        devtools::install_github("EGAnet")
+        devtools::install_github("hfgolino/EGAnet")
     }
 }
 
